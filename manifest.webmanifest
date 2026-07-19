@@ -1,0 +1,16 @@
+{
+  "name":"Yousef & Sandy",
+  "short_name":"Y&S Love",
+  "description":"قلعة الحب الخاصة بيوسف وساندي",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "orientation":"portrait",
+  "background_color":"#d7c8fa",
+  "theme_color":"#d4c2f6",
+  "lang":"ar",
+  "dir":"rtl",
+  "icons":[
+    {"src":"app-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
