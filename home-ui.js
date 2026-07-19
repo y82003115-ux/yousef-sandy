@@ -40,17 +40,27 @@
     if (!roomPage) return;
     roomPage.innerHTML = `<div class="live-room">
       <div class="live-bg" aria-hidden="true"></div><div class="petals" aria-hidden="true"></div>
-      <header class="room-status"><div class="room-owner"><span class="mini-avatar">Y</span><div><b>Yousef</b><small>مالك الروم · ID 5731381</small></div></div><div class="room-tools"><button aria-label="المزيد">•••</button><button aria-label="تشغيل وإيقاف">◉</button></div></header>
-      <section class="rocket-bar"><span>🚀</span><div><b>صاروخ الحب الأول</b><small>أرسلوا هدايا لفتح الصندوق العشوائي</small><i><em style="width:28%"></em></i></div><strong>28%</strong></section>
+      <header class="room-status"><button class="room-owner" type="button"><span class="mini-avatar">Y</span><div><b>Yousef</b><small>مستوى الروم 5 · يتقدم نقطة كل أسبوع</small></div></button><div class="room-tools"><button class="background-button" aria-label="الخلفيات">🌌</button><button aria-label="المزيد">•••</button><button aria-label="تشغيل وإيقاف">◉</button></div></header>
+      <button class="rocket-bar" type="button"><span>🚀</span><div><b>صاروخ الحب الأول</b><small>اضغط لمشاهدة هدايا جميع المستويات</small><i><em style="width:28%"></em></i></div><strong>28%</strong></button>
+      <section class="room-revenue"><b>ربح الروم من الهدايا</b><span>284,500 Love</span><i><em style="width:28.45%"></em></i><small>الهدف الأسبوعي 1,000,000 Love</small></section>
       <section class="royal-mics"><article><div class="royal-ring sandy-ring"><span>S</span></div><b>الملكة ساندي</b><small>14,250 Love</small></article><div class="love-link">♥<small>23·7·2025</small></div><article><div class="royal-ring"><span>Y</span></div><b>الملك يوسف</b><small>8,420 Love</small></article></section>
       <section class="room-seats"><button><span>＋</span><b>مايك 3</b></button><button><span>＋</span><b>مايك 4</b></button><button><span>＋</span><b>مايك 5</b></button><button><span>＋</span><b>مايك 6</b></button></section>
       <section class="room-chat-feed"><div class="room-notice">الغرفة خاصة بيوسف وساندي · استمتعوا باحترام واصنعوا ذكريات جميلة ♥</div><div class="room-game-card"><b>♥ مهمة نقاط الحب</b><span>أجيبا عن سؤال اليوم لتحصلا على 50 قلبًا</span><button data-route="tasks">ابدأ</button></div><p><span class="msg-avatar">S</span><b>ساندي <i>ملكة الروم</i></b><em>أهلًا بملك قلبي الأبدي ♥</em></p><p><span class="msg-avatar yousef">Y</span><b>يوسف <i>VIP الملكي</i></b><em>وأنتِ ملكة قلبي للأبد</em></p><div class="rocket-message">🚀 بقي 720 Love لإطلاق صاروخ الحب الأول</div></section>
       <footer class="room-compose"><button class="room-gift-button" type="button">🎁</button><button type="button">▦</button><button type="button">💬</button><button type="button">🎙️</button><button type="button">☺</button><form><input placeholder="قل شيئًا..."><button>➤</button></form></footer>
-      <aside class="room-gift-drawer"><div class="drawer-handle"></div><header><b>صندوق الهدايا والحقيبة</b><button type="button">✕</button></header><nav><button class="active">الهدايا</button><button>الصواريخ</button><button>حقيبتي</button><button>الإطارات</button></nav><div class="drawer-gifts"><article><b>🌹</b><span>وردة</span><small>10 ♥</small></article><article><b>🧸</b><span>دبدوب</span><small>30 ♥</small></article><article><b>💜</b><span>قلب ملكي</span><small>100 ♥</small></article><article><b>💍</b><span>خاتم الحب</span><small>300 ♥</small></article><article><b>🏰</b><span>قلعة الحب</span><small>1000 ♥</small></article></div><button class="drawer-send">إرسال الهدية</button></aside>
+      <aside class="room-gift-drawer"><div class="drawer-handle"></div><header><b>صندوق الهدايا</b><button type="button">✕</button></header><nav><button class="active">الحقيبة</button><button>الأعلام</button><button>الأحداث الأسبوعية</button><button>الخاصة</button><button>VIP</button><button>SVIP</button><button>هدايا المستوى</button><button>تفاعلية</button></nav><div class="drawer-gifts"><article><b>🎒</b><span>من حقيبتي</span><small>1 متاح</small></article><article><b>🇸🇾</b><span>علم سوريا</span><small>140 Love</small></article><article><b>🇮🇶</b><span>علم العراق</span><small>140 Love</small></article><article><b>💞</b><span>هدية تفاعلية</span><small>500 Love</small></article><article><b>👑</b><span>هدية SVIP</span><small>5,000 Love</small></article></div><button class="drawer-send">إرسال الهدية</button></aside>
+      <aside class="room-popup backgrounds-popup"><header><b>الخلفيات الحية</b><button>✕</button></header><div><button data-bg="sunset"><span>🌅</span>قصر الغروب</button><button data-bg="stars"><span>🌌</span>ليل النجوم</button><button data-bg="cinema"><span>🎬</span>سينما الحب</button><button data-bg="royal"><span>🏰</span>القلعة الملكية</button></div></aside>
+      <aside class="room-popup rockets-popup"><header><b>مستويات صواريخ الحب</b><button>✕</button></header><div class="rocket-levels"><article><b>🚀 Level 1</b><span>🌹 🧸 💜</span><small>10,000 Love</small></article><article><b>🚀 Level 2</b><span>💍 🕊️ 🎻</span><small>50,000 Love</small></article><article><b>🚀 Level 3</b><span>🐺 👑 🏰</span><small>150,000 Love</small></article><article><b>🚀 Level 4</b><span>💞 🦋 🌌</span><small>500,000 Love</small></article><article><b>🚀 Level 5</b><span>🏰 💍 👑</span><small>1,000,000 Love</small></article></div></aside>
+      <aside class="room-popup level-popup"><header><b>مستوى الغرفة</b><button>✕</button></header><div class="level-detail"><strong>Level 5</strong><p>يتقدم مستوى الروم نقطة تلقائيًا كل أسبوع.</p><i><em style="width:60%"></em></i><small>بقي 3 أيام للنقطة التالية</small></div></aside>
     </div>`;
     const drawer = roomPage.querySelector('.room-gift-drawer');
     roomPage.querySelector('.room-gift-button').onclick = () => drawer.classList.add('open');
     drawer.querySelector('header button').onclick = () => drawer.classList.remove('open');
+    const backgrounds=roomPage.querySelector('.backgrounds-popup'), rockets=roomPage.querySelector('.rockets-popup'), level=roomPage.querySelector('.level-popup');
+    roomPage.querySelector('.background-button').onclick=()=>backgrounds.classList.add('open');
+    roomPage.querySelector('.rocket-bar').onclick=()=>rockets.classList.add('open');
+    roomPage.querySelector('.room-owner').onclick=()=>level.classList.add('open');
+    roomPage.querySelectorAll('.room-popup header button').forEach(button=>button.onclick=()=>button.closest('.room-popup').classList.remove('open'));
+    roomPage.querySelectorAll('[data-bg]').forEach(button=>button.onclick=()=>{roomPage.querySelector('.live-bg').dataset.theme=button.dataset.bg;backgrounds.classList.remove('open')});
     roomPage.querySelector('.room-compose form').onsubmit = e => {
       e.preventDefault(); const input=e.currentTarget.querySelector('input'); if(!input.value.trim()) return;
       const p=document.createElement('p'); p.innerHTML=`<span class="msg-avatar yousef">Y</span><b>يوسف <i>VIP الملكي</i></b><em></em>`;p.querySelector('em').textContent=input.value;
@@ -59,6 +69,13 @@
     for(let n=0;n<15;n++){const petal=document.createElement('i');petal.style.setProperty('--x',`${(n*37)%100}%`);petal.style.setProperty('--d',`${7+(n%6)}s`);petal.style.setProperty('--delay',`${-(n%8)}s`);roomPage.querySelector('.petals').appendChild(petal);}
   }
   buildRoyalRoom();
+
+  function buildCinema() {
+    const landing=document.querySelector('#cinema');if(!landing)return;
+    landing.innerHTML=`<div class="cinema-landing"><div>🎬</div><h2>سينمتنا الخاصة</h2><p>ادخلا غرفة السينما، ارفعا فيلمًا واجلسا على المايكين للمشاهدة معًا.</p><button data-route="cinema-room">دخول غرفة السينما</button></div>`;
+    const cinema=document.createElement('section');cinema.className='page app-extra-page';cinema.id='cinema-room';cinema.innerHTML=`<div class="cinema-room"><div class="cinema-live-bg"></div><header><b>سينما يوسف وساندي</b><span>9D CINEMA</span></header><section class="movie-screen"><div class="screen-glow"></div><b>🎞️</b><h2>الشاشة الملكية المباشرة</h2><p>ارفع الفيلم لبدء المشاهدة المتزامنة</p><button>اختيار فيلم</button></section><nav class="cinema-effects"><button>🌬️ هواء 9D</button><button>✨ نجوم</button><button>🌧️ مطر</button><button>💗 رومانسية</button><button>🔊 صوت محيطي</button></nav><section class="cinema-mics"><article><div>S</div><b>ساندي</b><small>المايك 1</small></article><span>♥</span><article><div>Y</div><b>يوسف</b><small>المايك 2</small></article></section><footer><button>🎁</button><input placeholder="اكتب أثناء الفيلم..."><button>🎙️</button></footer></div>`;shell.appendChild(cinema);
+  }
+  buildCinema();
 
   const innerHeader = document.createElement('header');
   innerHeader.className = 'inner-header';
@@ -76,7 +93,7 @@
   document.body.appendChild(bottom);
 
   const map = { rooms: 'room', moments: 'memories' };
-  const titles = { room: 'الروم الملكي', messages: 'الرسائل', 'private-chat': 'ساندي', profile: 'الملف الشخصي', backpack: 'حقيبة الظهر', tasks: 'المهام', games: 'الألعاب', memories: 'الذكريات', cinema: 'سينمتنا', store: 'المتجر', studio: 'استوديو الهدايا', admin: 'إدارة يوسف' };
+  const titles = { room: 'الروم الملكي', messages: 'الرسائل', 'private-chat': 'ساندي', profile: 'الملف الشخصي', backpack: 'حقيبة الظهر', tasks: 'المهام', games: 'الألعاب', memories: 'الذكريات', cinema: 'سينمتنا', 'cinema-room': 'غرفة السينما', store: 'المتجر', studio: 'استوديو الهدايا', admin: 'إدارة يوسف' };
 
   function setPage(page, push = true) {
     page = map[page] || page;
@@ -85,7 +102,9 @@
     home.style.display = 'none';
     document.querySelector('.tabs').style.display = 'none';
     document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p === target));
-    document.body.classList.add('inner-view');
+    const immersive=['room','cinema-room','private-chat'].includes(page);
+    document.body.classList.toggle('inner-view',immersive);
+    document.body.classList.toggle('section-view',!immersive);
     innerHeader.classList.add('show');
     document.querySelector('#innerTitle').textContent = titles[page] || 'Yousef & Sandy';
     if (push) history.pushState({ appPage: page }, '', `#${page}`);
@@ -97,6 +116,7 @@
     document.querySelector('.tabs').style.display = 'none';
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.body.classList.remove('inner-view');
+    document.body.classList.remove('section-view');
     innerHeader.classList.remove('show');
     bottom.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.homeNav === 'home'));
     if (push) history.pushState({ appPage: 'home' }, '', location.pathname + location.search);
