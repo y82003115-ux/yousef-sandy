@@ -35,6 +35,31 @@
     <section class="page app-extra-page" id="tasks"><div class="inner-card"><h2>♥ مهام الحب</h2><p>أكمل الألعاب والأسئلة لتحصل على قلوب أو هدايا نادرة.</p><div class="task-list"><article><b>سؤال اليوم</b><span>+50 ♥</span><button>ابدأ</button></article><article><b>اربح جولة XO</b><span>صندوق نادر</span><button data-route="games">العب</button></article><article><b>اجمع 100 نقطة حب</b><span>إطار ملكي</span><button data-route="games">ابدأ</button></article></div></div></section>`;
   while (extras.firstElementChild) shell.appendChild(extras.firstElementChild);
 
+  function buildRoyalRoom() {
+    const roomPage = document.querySelector('#room');
+    if (!roomPage) return;
+    roomPage.innerHTML = `<div class="live-room">
+      <div class="live-bg" aria-hidden="true"></div><div class="petals" aria-hidden="true"></div>
+      <header class="room-status"><div class="room-owner"><span class="mini-avatar">Y</span><div><b>Yousef</b><small>مالك الروم · ID 5731381</small></div></div><div class="room-tools"><button aria-label="المزيد">•••</button><button aria-label="تشغيل وإيقاف">◉</button></div></header>
+      <section class="rocket-bar"><span>🚀</span><div><b>صاروخ الحب الأول</b><small>أرسلوا هدايا لفتح الصندوق العشوائي</small><i><em style="width:28%"></em></i></div><strong>28%</strong></section>
+      <section class="royal-mics"><article><div class="royal-ring sandy-ring"><span>S</span></div><b>الملكة ساندي</b><small>14,250 Love</small></article><div class="love-link">♥<small>23·7·2025</small></div><article><div class="royal-ring"><span>Y</span></div><b>الملك يوسف</b><small>8,420 Love</small></article></section>
+      <section class="room-seats"><button><span>＋</span><b>مايك 3</b></button><button><span>＋</span><b>مايك 4</b></button><button><span>＋</span><b>مايك 5</b></button><button><span>＋</span><b>مايك 6</b></button></section>
+      <section class="room-chat-feed"><div class="room-notice">الغرفة خاصة بيوسف وساندي · استمتعوا باحترام واصنعوا ذكريات جميلة ♥</div><div class="room-game-card"><b>♥ مهمة نقاط الحب</b><span>أجيبا عن سؤال اليوم لتحصلا على 50 قلبًا</span><button data-route="tasks">ابدأ</button></div><p><span class="msg-avatar">S</span><b>ساندي <i>ملكة الروم</i></b><em>أهلًا بملك قلبي الأبدي ♥</em></p><p><span class="msg-avatar yousef">Y</span><b>يوسف <i>VIP الملكي</i></b><em>وأنتِ ملكة قلبي للأبد</em></p><div class="rocket-message">🚀 بقي 720 Love لإطلاق صاروخ الحب الأول</div></section>
+      <footer class="room-compose"><button class="room-gift-button" type="button">🎁</button><button type="button">▦</button><button type="button">💬</button><button type="button">🎙️</button><button type="button">☺</button><form><input placeholder="قل شيئًا..."><button>➤</button></form></footer>
+      <aside class="room-gift-drawer"><div class="drawer-handle"></div><header><b>صندوق الهدايا والحقيبة</b><button type="button">✕</button></header><nav><button class="active">الهدايا</button><button>الصواريخ</button><button>حقيبتي</button><button>الإطارات</button></nav><div class="drawer-gifts"><article><b>🌹</b><span>وردة</span><small>10 ♥</small></article><article><b>🧸</b><span>دبدوب</span><small>30 ♥</small></article><article><b>💜</b><span>قلب ملكي</span><small>100 ♥</small></article><article><b>💍</b><span>خاتم الحب</span><small>300 ♥</small></article><article><b>🏰</b><span>قلعة الحب</span><small>1000 ♥</small></article></div><button class="drawer-send">إرسال الهدية</button></aside>
+    </div>`;
+    const drawer = roomPage.querySelector('.room-gift-drawer');
+    roomPage.querySelector('.room-gift-button').onclick = () => drawer.classList.add('open');
+    drawer.querySelector('header button').onclick = () => drawer.classList.remove('open');
+    roomPage.querySelector('.room-compose form').onsubmit = e => {
+      e.preventDefault(); const input=e.currentTarget.querySelector('input'); if(!input.value.trim()) return;
+      const p=document.createElement('p'); p.innerHTML=`<span class="msg-avatar yousef">Y</span><b>يوسف <i>VIP الملكي</i></b><em></em>`;p.querySelector('em').textContent=input.value;
+      roomPage.querySelector('.room-chat-feed').appendChild(p);input.value='';p.scrollIntoView({behavior:'smooth',block:'end'});
+    };
+    for(let n=0;n<15;n++){const petal=document.createElement('i');petal.style.setProperty('--x',`${(n*37)%100}%`);petal.style.setProperty('--d',`${7+(n%6)}s`);petal.style.setProperty('--delay',`${-(n%8)}s`);roomPage.querySelector('.petals').appendChild(petal);}
+  }
+  buildRoyalRoom();
+
   const innerHeader = document.createElement('header');
   innerHeader.className = 'inner-header';
   innerHeader.innerHTML = `<button id="appBack" aria-label="رجوع">${icons.back}</button><h1 id="innerTitle"></h1><span></span>`;
