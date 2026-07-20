@@ -29,7 +29,7 @@
   const extras = document.createElement('div');
   extras.innerHTML = `
     <section class="page app-extra-page" id="messages"><div class="inner-card"><h2>الرسائل</h2><p>محادثاتك الخاصة مستقلة عن غرفة الدردشة.</p><button class="conversation" data-message="sandy"><span class="chat-avatar">S<i></i></span><span><b>ساندي ♥</b><small>محادثة خاصة بينكما</small></span><em>الآن</em></button><button class="conversation" data-route="room"><span class="chat-avatar room-avatar">♕</span><span><b>رسائل الروم الملكي</b><small>دردشة قلعة يوسف وساندي</small></span><em>2</em></button></div></section>
-    <section class="page app-extra-page" id="private-chat"><div class="private-chat"><header><span class="chat-avatar">S<i></i></span><div><b>ساندي ♥</b><small>متصلة الآن</small></div></header><div class="private-feed"><p class="bubble other">أهلًا بملك قلبي ♥</p><p class="bubble mine">وأنتِ ملكة قلبي للأبد</p></div><form class="private-write"><button type="button">＋</button><input placeholder="اكتب رسالة خاصة..."><button class="send-plane" aria-label="إرسال">➤</button></form></div></section>
+    <section class="page app-extra-page" id="private-chat"><div class="private-chat"><header><span class="chat-avatar">S<i></i></span><div><b>ساندي ♥</b><small>متصلة الآن</small></div></header><div class="private-feed"><p class="bubble other">أهلًا بملك قلبي ♥</p><p class="bubble mine">وأنتِ ملكة قلبي للأبد</p></div><form class="private-write"><button type="button">＋</button><input placeholder="اكتب رسالة خاصة..."><button class="send-plane" aria-label="إرسال"><svg viewBox="0 0 24 24"><path d="M21 3 3 12l18 9-4-9Z"/></svg></button></form></div></section>
     <section class="page app-extra-page" id="profile"><div class="profile-card"><div class="profile-avatar">Y<i></i></div><h2>الملك يوسف</h2><p>مالك قلعة Yousef & Sandy</p><div class="profile-actions"><button data-route="studio">🎬<b>استوديو الهدايا</b><small>صمّم فيديو أو هدية متحركة</small></button><button data-route="backpack">🎒<b>حقيبة الظهر</b><small>الهدايا والإطارات والفقاعات</small></button><button data-route="tasks">♥<b>المهام</b><small>ألعاب وأسئلة ومكافآت</small></button><button data-route="store">🛍️<b>المتجر</b><small>هدايا وخلفيات وإطارات</small></button></div><p class="privacy-note">لا عائلة · لا زوار · لا متابعين · لا ماسات</p></div></section>
     <section class="page app-extra-page" id="backpack"><div class="inner-card"><h2>🎒 حقيبة الظهر</h2><div class="inventory-tabs"><button class="active">الهدايا</button><button>الإطارات</button><button>فقاعات الدردشة</button><button>الخلفيات</button></div><div class="inventory-grid"><article><b>🎻</b><strong>الكمان</strong><span>1</span></article><article><b>🎮</b><strong>لوحة الألعاب</strong><span>1</span></article><article><b>🎧</b><strong>سماعات</strong><span>5</span></article><article><b>🎼</b><strong>نوتة موسيقية</strong><span>5</span></article><article><b>💜</b><strong>صندوق نادر</strong><span>1</span></article></div></div></section>
     <section class="page app-extra-page" id="tasks"><div class="inner-card"><h2>♥ مهام الحب</h2><p>أكمل الألعاب والأسئلة لتحصل على قلوب أو هدايا نادرة.</p><div class="task-list"><article><b>سؤال اليوم</b><span>+50 ♥</span><button>ابدأ</button></article><article><b>اربح جولة XO</b><span>صندوق نادر</span><button data-route="games">العب</button></article><article><b>اجمع 100 نقطة حب</b><span>إطار ملكي</span><button data-route="games">ابدأ</button></article></div></div></section>`;
@@ -46,7 +46,7 @@
       <section class="royal-mics"><article><div class="royal-ring sandy-ring"><span>S</span></div><b>الملكة ساندي</b><small>14,250 Love</small></article><div class="love-link">♥<small>23·7·2025</small></div><article><div class="royal-ring"><span>Y</span></div><b>الملك يوسف</b><small>8,420 Love</small></article></section>
       <section class="room-seats"><button><span>＋</span><b>مايك 3</b></button><button><span>＋</span><b>مايك 4</b></button><button><span>＋</span><b>مايك 5</b></button><button><span>＋</span><b>مايك 6</b></button></section>
       <section class="room-chat-feed"><div class="room-notice">الغرفة خاصة بيوسف وساندي · استمتعوا باحترام واصنعوا ذكريات جميلة ♥</div><div class="room-game-card"><b>♥ مهمة نقاط الحب</b><span>أجيبا عن سؤال اليوم لتحصلا على 50 قلبًا</span><button data-route="tasks">ابدأ</button></div><p><span class="msg-avatar">S</span><b>ساندي <i>ملكة الروم</i></b><em>أهلًا بملك قلبي الأبدي ♥</em></p><p><span class="msg-avatar yousef">Y</span><b>يوسف <i>VIP الملكي</i></b><em>وأنتِ ملكة قلبي للأبد</em></p><div class="rocket-message">🚀 بقي 720 Love لإطلاق صاروخ الحب الأول</div></section>
-      <footer class="room-compose"><button class="room-gift-button" type="button">🎁</button><button type="button">▦</button><button type="button">💬</button><button type="button">🎙️</button><button type="button">☺</button><form><input placeholder="قل شيئًا..."><button class="send-plane" aria-label="إرسال">➤</button></form></footer>
+      <footer class="room-compose"><button class="room-gift-button" type="button">🎁</button><button type="button">▦</button><button type="button">💬</button><button type="button">🎙️</button><button type="button">☺</button><form><input placeholder="قل شيئًا..."><button class="send-plane" aria-label="إرسال"><svg viewBox="0 0 24 24"><path d="M21 3 3 12l18 9-4-9Z"/></svg></button></form></footer>
       <aside class="room-gift-drawer"><div class="drawer-handle"></div><header><b>صندوق الهدايا</b><button type="button">✕</button></header><nav><button class="active">الحقيبة</button><button>الأعلام</button><button>الأحداث الأسبوعية</button><button>الخاصة</button><button>VIP</button><button>SVIP</button><button>هدايا المستوى</button><button>تفاعلية</button></nav><div class="drawer-gifts"><article><b>🎒</b><span>من حقيبتي</span><small>1 متاح</small></article><article><b>🇸🇾</b><span>علم سوريا</span><small>140 Love</small></article><article><b>🇮🇶</b><span>علم العراق</span><small>140 Love</small></article><article><b>💞</b><span>هدية تفاعلية</span><small>500 Love</small></article><article><b>👑</b><span>هدية SVIP</span><small>5,000 Love</small></article></div><button class="drawer-send">إرسال الهدية</button></aside>
       <aside class="room-popup backgrounds-popup"><header><b>الخلفيات الحية</b><button>✕</button></header><div><button data-bg="sunset"><span>🌅</span>قصر الغروب</button><button data-bg="stars"><span>🌌</span>ليل النجوم</button><button data-bg="cinema"><span>🎬</span>سينما الحب</button><button data-bg="royal"><span>🏰</span>القلعة الملكية</button></div></aside>
       <aside class="room-popup rockets-popup"><header><b>مستويات صواريخ الحب</b><button>✕</button></header><div class="rocket-levels"><article><b>🚀 Level 1</b><span>🌹 🧸 💜</span><small>10,000 Love</small></article><article><b>🚀 Level 2</b><span>💍 🕊️ 🎻</span><small>50,000 Love</small></article><article><b>🚀 Level 3</b><span>🐺 👑 🏰</span><small>150,000 Love</small></article><article><b>🚀 Level 4</b><span>💞 🦋 🌌</span><small>500,000 Love</small></article><article><b>🚀 Level 5</b><span>🏰 💍 👑</span><small>1,000,000 Love</small></article></div></aside>
@@ -73,7 +73,7 @@
   function buildCinema() {
     const landing=document.querySelector('#cinema');if(!landing)return;
     landing.innerHTML=`<div class="cinema-landing"><div>🎬</div><h2>سينمتنا الخاصة</h2><p>ادخلا غرفة السينما، ارفعا فيلمًا واجلسا على المايكين للمشاهدة معًا.</p><button data-route="cinema-room">دخول غرفة السينما</button></div>`;
-    const cinema=document.createElement('section');cinema.className='page app-extra-page';cinema.id='cinema-room';cinema.innerHTML=`<div class="cinema-room"><div class="cinema-live-bg"></div><header><b>سينما يوسف وساندي</b><span>9D CINEMA</span></header><section class="movie-screen"><div class="screen-glow"></div><b>🎞️</b><h2>الشاشة الملكية المباشرة</h2><p>ارفع الفيلم لبدء المشاهدة المتزامنة</p><button>اختيار فيلم</button></section><nav class="cinema-effects"><button>🌬️ هواء 9D</button><button>✨ نجوم</button><button>🌧️ مطر</button><button>💗 رومانسية</button><button>🔊 صوت محيطي</button></nav><section class="cinema-mics"><article><div>S</div><b>ساندي</b><small>المايك 1</small></article><span>♥</span><article><div>Y</div><b>يوسف</b><small>المايك 2</small></article></section><footer><button type="button">🎁</button><form><input placeholder="اكتب أثناء الفيلم..."><button class="send-plane" aria-label="إرسال">➤</button></form><button type="button">🎙️</button></footer></div>`;shell.appendChild(cinema);
+    const cinema=document.createElement('section');cinema.className='page app-extra-page';cinema.id='cinema-room';cinema.innerHTML=`<div class="cinema-room"><div class="cinema-live-bg"></div><header><b>سينما يوسف وساندي</b><span>9D CINEMA</span></header><section class="movie-screen"><div class="screen-glow"></div><b>🎞️</b><h2>الشاشة الملكية المباشرة</h2><p>ارفع الفيلم لبدء المشاهدة المتزامنة</p><button>اختيار فيلم</button></section><nav class="cinema-effects"><button>🌬️ هواء 9D</button><button>✨ نجوم</button><button>🌧️ مطر</button><button>💗 رومانسية</button><button>🔊 صوت محيطي</button></nav><section class="cinema-mics"><article><div>S</div><b>ساندي</b><small>المايك 1</small></article><span>♥</span><article><div>Y</div><b>يوسف</b><small>المايك 2</small></article></section><footer><button type="button">🎁</button><form><input placeholder="اكتب أثناء الفيلم..."><button class="send-plane" aria-label="إرسال"><svg viewBox="0 0 24 24"><path d="M21 3 3 12l18 9-4-9Z"/></svg></button></form><button type="button">🎙️</button></footer></div>`;shell.appendChild(cinema);
   }
   buildCinema();
 
@@ -122,7 +122,13 @@
     document.body.classList.toggle('inner-view',immersive);
     document.body.classList.toggle('section-view',!immersive);
     innerHeader.classList.add('show');
-    document.querySelector('#innerTitle').textContent = titles[page] || 'Yousef & Sandy';
+    document.querySelector('#innerTitle').textContent = titles[page] || 'Yousef Sandy';
+    const navPage = page === 'room' ? 'rooms' : page;
+    bottom.querySelectorAll('button').forEach(button => {
+      const active = button.dataset.homeNav === navPage;
+      button.classList.toggle('active', active);
+      button.setAttribute('aria-current', active ? 'page' : 'false');
+    });
     if (push) history.pushState({ appPage: page }, '', `#${page}`);
     scrollTo(0, 0);
   }
@@ -134,7 +140,11 @@
     document.body.classList.remove('inner-view');
     document.body.classList.remove('section-view');
     innerHeader.classList.remove('show');
-    bottom.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.homeNav === 'home'));
+    bottom.querySelectorAll('button').forEach(b => {
+      const active = b.dataset.homeNav === 'home';
+      b.classList.toggle('active', active);
+      b.setAttribute('aria-current', active ? 'page' : 'false');
+    });
     if (push) history.pushState({ appPage: 'home' }, '', location.pathname + location.search);
     scrollTo(0, 0);
   }
