@@ -72,8 +72,8 @@
 
   function buildCinema() {
     const landing=document.querySelector('#cinema');if(!landing)return;
-    landing.innerHTML=`<div class="cinema-landing"><div>🎬</div><h2>سينمتنا الخاصة</h2><p>ادخلا غرفة السينما، ارفعا فيلمًا واجلسا على المايكين للمشاهدة معًا.</p><button data-route="cinema-room">دخول غرفة السينما</button></div>`;
-    const cinema=document.createElement('section');cinema.className='page app-extra-page';cinema.id='cinema-room';cinema.innerHTML=`<div class="cinema-room"><div class="cinema-live-bg"></div><header><b>سينما يوسف وساندي</b><span>9D CINEMA</span></header><section class="movie-screen"><div class="screen-glow"></div><b>🎞️</b><h2>الشاشة الملكية المباشرة</h2><p>ارفع الفيلم لبدء المشاهدة المتزامنة</p><button>اختيار فيلم</button></section><nav class="cinema-effects"><button>🌬️ هواء 9D</button><button>✨ نجوم</button><button>🌧️ مطر</button><button>💗 رومانسية</button><button>🔊 صوت محيطي</button></nav><section class="cinema-mics"><article><div>S</div><b>ساندي</b><small>المايك 1</small></article><span>♥</span><article><div>Y</div><b>يوسف</b><small>المايك 2</small></article></section><footer><button type="button">🎁</button><form><input placeholder="اكتب أثناء الفيلم..."><button class="send-plane" aria-label="إرسال"><svg viewBox="0 0 24 24"><path d="M21 3 3 12l18 9-4-9Z"/></svg></button></form><button type="button">🎙️</button></footer></div>`;shell.appendChild(cinema);
+    landing.innerHTML=`<div class="cinema-landing"><div class="cinema-landing-bg"></div><section class="cinema-welcome"><small>YS • PRIVATE 9D CINEMA</small><h2>سينمتنا الملكية</h2><p>عالم خاص يجمع يوسف وساندي أمام الشاشة الكبيرة</p></section><div class="cinema-entry-actions"><button class="cinema-enter" data-route="cinema-room"><b>🎟️</b><span>دخول السينما<small>ابدآ المشاهدة معًا</small></span></button><button class="cinema-library-button" type="button"><b>🎞️</b><span>قائمة الأفلام<small>اختارا فيلم الليلة</small></span></button><label class="cinema-upload-button"><b>⬆️</b><span>رفع فيلم من الهاتف<small>MP4 أو أي ملف فيديو</small></span><input class="cinema-file-input" type="file" accept="video/*"></label></div><aside class="cinema-library"><header><b>قائمة أفلامنا</b><button type="button">✕</button></header><article><span>💞</span><div><b>فيلم رومانسي</b><small>جاهز للاختيار</small></div><button data-route="cinema-room">تشغيل</button></article><article><span>🌙</span><div><b>سهرة يوسف وساندي</b><small>أضيفا فيلمًا من الهاتف</small></div><button data-route="cinema-room">اختيار</button></article><label>＋ إضافة فيلم جديد<input class="cinema-file-input" type="file" accept="video/*"></label></aside></div>`;
+    const cinema=document.createElement('section');cinema.className='page app-extra-page';cinema.id='cinema-room';cinema.innerHTML=`<div class="cinema-room"><div class="cinema-live-bg"></div><header><b>سينما يوسف وساندي</b><span>9D CINEMA</span></header><section class="movie-screen"><div class="screen-glow"></div><video class="cinema-video" controls playsinline></video><div class="movie-placeholder"><b>🎞️</b><h2>الشاشة الملكية المباشرة</h2><p>ارفع الفيلم لبدء المشاهدة المتزامنة</p><label>رفع فيلم<input class="cinema-file-input" type="file" accept="video/*"></label></div></section><nav class="cinema-effects"><button>🌬️ هواء 9D</button><button>✨ نجوم</button><button>🌧️ مطر</button><button>💗 رومانسية</button><button>🔊 صوت محيطي</button></nav><section class="cinema-mics"><article><div>S</div><b>ساندي</b><small>المايك 1</small></article><span>♥</span><article><div>Y</div><b>يوسف</b><small>المايك 2</small></article></section><footer><button type="button">🎁</button><form><input placeholder="اكتب أثناء الفيلم..."><button class="send-plane" aria-label="إرسال"><svg viewBox="0 0 24 24"><path d="M21 3 3 12l18 9-4-9Z"/></svg></button></form><button type="button">🎙️</button></footer></div>`;shell.appendChild(cinema);
   }
   buildCinema();
 
@@ -154,11 +154,26 @@
     if (route) { e.preventDefault(); setPage(route.dataset.route); }
     const message = e.target.closest('[data-message="sandy"]');
     if (message) setPage('private-chat');
+    if(e.target.closest('.cinema-library-button')) document.querySelector('.cinema-library')?.classList.add('open');
+    if(e.target.closest('.cinema-library header button')) document.querySelector('.cinema-library')?.classList.remove('open');
   });
   bottom.addEventListener('click', e => {
     const button = e.target.closest('[data-home-nav]');
     if (!button) return;
     button.dataset.homeNav === 'home' ? showHome() : setPage(button.dataset.homeNav);
+  });
+  document.addEventListener('change',e=>{
+    const input=e.target.closest('.cinema-file-input');
+    if(!input?.files?.[0])return;
+    const video=document.querySelector('.cinema-video');
+    if(video.dataset.objectUrl)URL.revokeObjectURL(video.dataset.objectUrl);
+    const objectUrl=URL.createObjectURL(input.files[0]);
+    video.dataset.objectUrl=objectUrl;
+    video.src=objectUrl;
+    document.querySelector('.movie-screen')?.classList.add('has-video');
+    document.querySelector('.cinema-library')?.classList.remove('open');
+    setPage('cinema-room');
+    video.play().catch(()=>{});
   });
   document.querySelector('#appBack').onclick = () => history.back();
   window.addEventListener('popstate', e => e.state?.appPage && e.state.appPage !== 'home' ? setPage(e.state.appPage, false) : showHome(false));
