@@ -28,15 +28,15 @@
   body.inner-view .mobile-bottom,body.inner-view .gift-panel-toggle{display:none!important}.inner-header{display:none;position:sticky;top:0;z-index:75;height:58px;align-items:center;justify-content:space-between;padding:8px 12px;background:#f5effff2;color:#432f60;border-bottom:1px solid #fff;backdrop-filter:blur(18px)}.inner-header.show{display:flex}.inner-header button{width:40px;height:40px;display:grid;place-items:center;border:0;border-radius:14px;background:#ffffffb8;color:#684594}.inner-header h1{font-size:17px;margin:0}.inner-header>span{width:40px}
 
   /* شريط تنقل ثلاثي الأبعاد مع تحديد الصفحة الحالية */
-  .mobile-bottom{overflow:visible!important;padding:8px 4px 7px!important;perspective:700px}
-  .mobile-bottom button{position:relative;isolation:isolate;min-height:50px;border-radius:16px!important;transition:transform .22s ease,color .22s ease,filter .22s ease!important}
-  .mobile-bottom button::before{content:"";position:absolute;z-index:-1;inset:2px 7px 11px;border-radius:14px;background:linear-gradient(145deg,#fff,#eadfff);border:1px solid #fff;box-shadow:4px 5px 9px #6f518329,-3px -3px 7px #fff;opacity:.74;transition:.22s ease}
-  .mobile-bottom button svg{width:24px!important;height:24px!important;filter:drop-shadow(0 3px 2px #4e35652f);transition:.22s ease}
-  .mobile-bottom button.active{color:#fff!important;transform:translateY(-7px) scale(1.06);filter:drop-shadow(0 8px 8px #8758bb55)}
-  .mobile-bottom button.active::before{inset:-2px 4px 8px;background:linear-gradient(145deg,#b67cff,#7545ce 58%,#e68bc8);border-color:#efdfff;box-shadow:inset 2px 2px 4px #ffffff75,inset -3px -4px 6px #4b21865c,0 7px 13px #7040a74d;opacity:1}
-  .mobile-bottom button.active svg{transform:translateY(-1px) scale(1.08);filter:drop-shadow(0 3px 2px #3c1d7066)}
-  .mobile-bottom button.active span{font-weight:800;color:#6d3eb6;background:#fff;border-radius:8px;padding:1px 5px;box-shadow:0 2px 5px #5e3b752f}
-  .mobile-bottom button:active{transform:translateY(-3px) scale(.96)}
+  .mobile-bottom{display:grid!important;grid-template-columns:repeat(8,minmax(0,1fr));overflow:visible!important;gap:1px!important;padding:7px 3px 6px!important;perspective:700px}
+  .mobile-bottom button{min-width:0!important;width:100%;min-height:55px!important;display:flex!important;flex-direction:column;justify-content:center;gap:2px!important;position:relative;border-radius:14px!important;color:#756681!important;transition:transform .22s ease,color .22s ease!important}
+  .mobile-bottom .nav-3d-icon{width:34px;height:34px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(145deg,#fff,#e7daf7);border:1px solid #fff;box-shadow:inset 2px 2px 3px #fff,inset -3px -3px 5px #a487bd55,0 5px 7px #5f426334;transition:.22s ease}
+  .mobile-bottom .nav-3d-icon svg{width:21px!important;height:21px!important;filter:drop-shadow(0 2px 1px #4e35654f);transition:.22s ease}
+  .mobile-bottom button.active{color:#7040bd!important;transform:translateY(-8px)}
+  .mobile-bottom button.active .nav-3d-icon{color:#fff;background:linear-gradient(145deg,#e998d5,#a569e7 48%,#6635bd);border-color:#f8eaff;box-shadow:inset 3px 3px 5px #ffffff80,inset -4px -5px 7px #3d18756b,0 9px 14px #6e3ba96b;transform:rotateX(8deg) scale(1.1)}
+  .mobile-bottom button.active .nav-3d-icon svg{filter:drop-shadow(0 3px 2px #36156288)}
+  .mobile-bottom button.active span{font-weight:900!important;color:#6535ad!important}
+  .mobile-bottom button:active{transform:translateY(-3px) scale(.94)}
   body.section-view .mobile-bottom{display:flex}body.section-view .page{padding-bottom:95px}body.section-view .gift-panel-toggle{display:none!important}
   body.inner-view .page{padding-top:12px;padding-bottom:24px;min-height:calc(100vh - 58px)}body.inner-view .write{bottom:12px}body.inner-view .gifts-mini{bottom:70px}
   .app-extra-page{color:#392b49}.inner-card,.profile-card{margin:0 2px;padding:18px;border:1px solid #fff;border-radius:25px;background:#ffffffc9;box-shadow:0 14px 36px #61497e20}.inner-card>h2,.profile-card h2{margin:0 0 8px;color:#4e3472}.inner-card>p,.profile-card>p{color:#826f91;font-size:12px;line-height:1.7}

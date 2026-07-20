@@ -105,7 +105,7 @@
   ];
   const bottom = document.createElement('nav');
   bottom.className = 'mobile-bottom';
-  bottom.innerHTML = navItems.map(([key, label]) => `<button data-home-nav="${key}">${icons[key]}<span>${label}</span></button>`).join('');
+  bottom.innerHTML = navItems.map(([key, label]) => `<button type="button" data-home-nav="${key}"><b class="nav-3d-icon">${icons[key]}</b><span>${label}</span></button>`).join('');
   document.body.appendChild(bottom);
 
   const map = { rooms: 'room', moments: 'memories' };
