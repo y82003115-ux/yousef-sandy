@@ -1,6 +1,6 @@
 {
-  "name":"Yousef & Sandy",
-  "short_name":"Y&S Love",
+  "name":"Yousef Sandy",
+  "short_name":"YS Love",
   "description":"قلعة الحب الخاصة بيوسف وساندي",
   "start_url":"./",
   "scope":"./",
@@ -11,6 +11,6 @@
   "lang":"ar",
   "dir":"rtl",
   "icons":[
-    {"src":"app-icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+    {"src":"app-icon-3d.png","sizes":"1254x1254","type":"image/png","purpose":"any maskable"}
   ]
 }

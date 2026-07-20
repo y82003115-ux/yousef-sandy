@@ -1,5 +1,6 @@
 (function(){
-  const VERSION='20260720-8';
+  const VERSION='20260720-10';
+  if('virtualKeyboard' in navigator)navigator.virtualKeyboard.overlaysContent=true;
   const css=document.createElement('link');css.rel='stylesheet';css.href='mobile-ui.css?v='+VERSION;document.head.appendChild(css);
   const home=document.createElement('script');home.src='home-ui.js?v='+VERSION;document.body.appendChild(home);
   const manifest=document.createElement('link');manifest.rel='manifest';manifest.href='manifest.webmanifest';document.head.appendChild(manifest);
