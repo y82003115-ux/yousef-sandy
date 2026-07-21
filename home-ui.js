@@ -200,7 +200,25 @@
   function playInCinema(url){if(!url)return;const video=document.querySelector('.cinema-video');video.src=url;document.querySelector('.cinema-library')?.classList.remove('open');setPage('cinema-room');video.play().catch(()=>{});}
   function chooseCinemaSource(source){document.querySelector('.watch-sources')?.classList.remove('open');if(source==='gallery'){document.querySelector('.cinema-gallery-input')?.click();return;}if(source==='films'){const library=document.querySelector('.cinema-library');library.dataset.target='cinema';library.classList.add('open');loadCinemaMedia();return;}setPage('memories');}
   function toggleCinemaPanel(selector){document.querySelectorAll('.cinema-panel').forEach(p=>p.classList.toggle('open',p.matches(selector)&&!p.classList.contains('open')));}
-  function launchCinemaFx(symbol,type){const stage=document.querySelector('.cinema-fx-stage');if(!stage)return;if(type==='emote'){const mic=document.querySelector('.cinema-mic.occupied'),bubble=document.createElement('i');bubble.className='mic-emote';bubble.textContent=symbol;mic.appendChild(bubble);setTimeout(()=>bubble.remove(),2500);}stage.innerHTML='';for(let i=0;i<(type==='emote'?6:14);i++){const s=document.createElement('i');s.textContent=type==='emote'?symbol:'';if(type!=='emote')s.dataset.fx=type;s.style.setProperty('--x',`${8+(i*31)%84}%`);s.style.setProperty('--delay',`${i*.08}s`);stage.appendChild(s);}stage.className=`cinema-fx-stage active ${type}`;setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},3200);}
+  function launchCinemaFx(symbol,type){
+    const stage=document.querySelector('.cinema-fx-stage');if(!stage)return;
+    document.querySelectorAll('.cinema-panel.open').forEach(p=>p.classList.remove('open'));
+    stage.innerHTML='';stage.className=`cinema-fx-stage active ${type}`;
+    if(type==='emote'){
+      const mic=document.querySelector('.cinema-mic.occupied'),bubble=document.createElement('i');bubble.className='mic-emote';bubble.textContent=symbol;mic?.appendChild(bubble);setTimeout(()=>bubble.remove(),2400);return;
+    }
+    if(type==='snow'||type==='rain'){
+      const glyph=type==='snow'?'❄':'│',count=type==='snow'?22:34;
+      for(let i=0;i<count;i++){const p=document.createElement('i');p.className=`weather-particle ${type}`;p.textContent=glyph;p.style.setProperty('--x',`${(i*37)%101}%`);p.style.setProperty('--delay',`${(i%9)*.16}s`);p.style.setProperty('--drift',`${-28+(i*19)%57}px`);stage.appendChild(p)}
+      setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},4300);return;
+    }
+    const y=document.querySelector('.cinema-mic[data-mic="1"] .mic-frame'),sandy=document.querySelector('.cinema-mic[data-mic="2"] .mic-frame');
+    const from=y?.getBoundingClientRect(),to=sandy?.getBoundingClientRect(),gift=document.createElement('i');
+    gift.className=`direct-gift ${type}`;gift.textContent=type==='hearts'?'💗':type==='baklava'?'🥮':type==='popcorn'?'🍿':type==='cola'?'🥤':type==='icecream'?'🍨':type==='wind'?'🌬️':type==='stars'?'✨':'🌹';
+    const sx=(from?.left||40)+(from?.width||70)/2,sy=(from?.top||innerHeight*.55)+(from?.height||70)/2,ex=(to?.left||innerWidth-90)+(to?.width||70)/2,ey=(to?.top||innerHeight*.55)+(to?.height||70)/2;
+    gift.style.setProperty('--sx',`${sx}px`);gift.style.setProperty('--sy',`${sy}px`);gift.style.setProperty('--mx',`${(sx+ex)/2}px`);gift.style.setProperty('--my',`${(sy+ey)/2-105}px`);gift.style.setProperty('--ex',`${ex}px`);gift.style.setProperty('--ey',`${ey}px`);stage.appendChild(gift);
+    setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},2600);
+  }
   function handleCinemaMic(button){const mic=button.closest('.cinema-mic'),action=button.dataset.micAction;if(action==='take'){mic.classList.add('occupied');mic.querySelector('.mic-frame span').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').includes('ساندي')?'S':'Y';mic.querySelector('b').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').replace('الملكة ','').replace('الملك ','');mic.querySelector('small').textContent='على المايك';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="mute">غلق المايك</button><button data-mic-action="leave">ترك المايك</button>';return;}if(action==='leave'){mic.classList.remove('occupied','muted');mic.querySelector('.mic-frame span').textContent='＋';mic.querySelector('b').textContent='المايك '+mic.dataset.mic;mic.querySelector('small').textContent='متاح';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="take">أخذ المايك</button><button data-mic-action="invite">دعوة ساندي</button>';return;}if(action==='mute'){mic.classList.toggle('muted');button.textContent=mic.classList.contains('muted')?'فتح المايك':'غلق المايك';return;}if(action==='invite'){button.textContent='تم إرسال الدعوة ✓';}}
   document.addEventListener('change',async e=>{
     const gallery=e.target.closest('.cinema-gallery-input');if(gallery?.files?.[0]){const url=URL.createObjectURL(gallery.files[0]),video=document.querySelector('.cinema-video');video.src=url;video.play().catch(()=>{});return;}
