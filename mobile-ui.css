@@ -7,6 +7,41 @@
   html body #cinema-room .cinema-room.snow-frozen .mic-frame{filter:none!important;outline:0!important;box-shadow:none!important}html body #cinema-room .cinema-room.snow-frozen .cinema-mic[data-mic="1"] .mic-frame:after,html body #cinema-room .cinema-room.snow-frozen .cinema-mic[data-mic="2"] .mic-frame:after{inset:-20px!important;filter:drop-shadow(0 3px 6px #4bbbe8cc)!important}html body #cinema-room .cinema-room.snow-frozen .cinema-mic[data-mic="1"] .mic-frame:after{background-image:url('ice-mic-ring1-v28.png')!important}html body #cinema-room .cinema-room.snow-frozen .cinema-mic[data-mic="2"] .mic-frame:after{background-image:url('ice-mic-ring2-v28.png')!important}
 }
 
+/* v38 ABSOLUTE FINAL LOCK — energetic bucket shake + 20 visible falling kernels */
+@media(max-width:800px){
+  html body #cinema-room .popcorn-bucket{
+    width:230px!important;height:230px!important;margin:8px 0 0!important;
+    animation:bucketShowV38 6.45s cubic-bezier(.17,.76,.22,1) both!important
+  }
+  html body #cinema-room .popcorn-bucket img{transform:translateZ(34px)!important;transform-origin:50% 78%!important}
+  html body #cinema-room .falling-kernel{
+    display:block!important;z-index:15!important;left:50%!important;top:calc(50% - 82px)!important;
+    width:25px!important;height:22px!important;opacity:1!important;visibility:visible!important;
+    animation:kernelPourV38 3.75s cubic-bezier(.26,.02,.74,.8) var(--delay) both!important
+  }
+  html body #cinema-room .falling-kernel:before,
+  html body #cinema-room .falling-kernel:after,
+  html body #cinema-room .falling-kernel span{display:block!important;opacity:1!important}
+  @keyframes bucketShowV38{
+    0%{opacity:0;transform:translate3d(0,145px,-180px) rotateX(34deg) scale(.25)}
+    13%{opacity:1;transform:translate3d(0,-14px,35px) rotateX(-8deg) scale(1.08)}
+    22%{transform:translate3d(-38px,-8px,45px) rotateY(19deg) rotateZ(-13deg) scale(1.04)}
+    31%{transform:translate3d(36px,-12px,55px) rotateY(-18deg) rotateZ(14deg) scale(1.08)}
+    40%{transform:translate3d(-29px,-7px,48px) rotateY(15deg) rotateZ(-11deg) scale(1.05)}
+    49%{transform:translate3d(25px,-10px,52px) rotateY(-14deg) rotateZ(10deg) scale(1.07)}
+    60%{transform:translate3d(-13px,-4px,30px) rotateY(8deg) rotateZ(-6deg) scale(1.03)}
+    72%,88%{opacity:1;transform:translate3d(0,0,0) rotateY(0) rotateZ(0) scale(1)}
+    100%{opacity:0;transform:translate3d(0,95px,-120px) rotateX(20deg) scale(.58)}
+  }
+  @keyframes kernelPourV38{
+    0%,5%{opacity:0;transform:translate(var(--start-x),-20px) rotate(0) scale(.28)}
+    10%{opacity:1;transform:translate(var(--start-x),-5px) rotate(35deg) scale(var(--scale))}
+    27%{opacity:1;transform:translate(var(--start-x),38px) rotate(var(--spin-mid)) scale(var(--scale))}
+    74%{opacity:1}
+    100%{opacity:0;transform:translate(var(--land-x),var(--drop-y)) rotate(var(--spin)) scale(var(--drop-scale))}
+  }
+}
+
 /* v37 photorealistic cylindrical YS bucket */
 @media(max-width:800px){
   html body #cinema-room .popcorn-bucket{width:210px!important;height:210px!important;margin:0!important;clip-path:none!important;background:none!important;box-shadow:none!important;overflow:visible!important;animation:bucketProductV37 5.85s cubic-bezier(.2,.72,.2,1) both!important;transform-style:preserve-3d!important}
@@ -245,4 +280,12 @@
     30%{opacity:1;transform:translate(var(--start-x),-25px) rotate(var(--spin-mid)) scale(var(--scale))}
     100%{opacity:0;transform:translate(var(--land-x),var(--drop-y)) rotate(var(--spin)) scale(var(--drop-scale))}
   }
+}
+
+/* v38 FINAL CASCADE LOCK */
+@media(max-width:800px){
+  html body #cinema-room .popcorn-bucket{width:230px!important;height:230px!important;margin:8px 0 0!important;animation:bucketShowV38 6.45s cubic-bezier(.17,.76,.22,1) both!important}
+  html body #cinema-room .popcorn-bucket img{transform:translateZ(34px)!important;transform-origin:50% 78%!important}
+  html body #cinema-room .falling-kernel{display:block!important;z-index:15!important;left:50%!important;top:calc(50% - 82px)!important;width:25px!important;height:22px!important;opacity:1!important;visibility:visible!important;animation:kernelPourV38 3.75s cubic-bezier(.26,.02,.74,.8) var(--delay) both!important}
+  html body #cinema-room .falling-kernel:before,html body #cinema-room .falling-kernel:after,html body #cinema-room .falling-kernel span{display:block!important;opacity:1!important}
 }
