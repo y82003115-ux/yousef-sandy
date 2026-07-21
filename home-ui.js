@@ -241,7 +241,7 @@
 
   function launchPopcornBurst(stage){
     const scene=document.createElement('div');scene.className='popcorn-3d-scene';
-    scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><img class="bucket-empty" src="popcorn-bucket-empty-v40.png" alt="YS popcorn"><span class="bucket-fill-level fill-25"><img src="popcorn-pile-v40.png" alt=""></span><span class="bucket-fill-level fill-50"><img src="popcorn-pile-v40.png" alt=""></span><span class="bucket-fill-level fill-75"><img src="popcorn-pile-v40.png" alt=""></span><span class="bucket-fill-level fill-100"><img src="popcorn-pile-v40.png" alt=""></span></div>';
+    scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><img class="bucket-empty" src="popcorn-bucket-empty-v40.png" alt="YS popcorn"><img class="bucket-pile-v45" src="popcorn-pile-v40.png" alt="Popcorn filling"></div>';
     stage.appendChild(scene);
     for(let i=0;i<60;i++){
       const filling=i<40,p=document.createElement('i');p.className=`popcorn-kernel falling-kernel ${filling?'kernel-fill':'kernel-spill'} kernel-${i%3}`;p.innerHTML='<img src="popcorn-kernel-v39.png" alt="">';
