@@ -289,3 +289,24 @@
   html body #cinema-room .falling-kernel{display:block!important;z-index:15!important;left:50%!important;top:calc(50% - 82px)!important;width:25px!important;height:22px!important;opacity:1!important;visibility:visible!important;animation:kernelPourV38 3.75s cubic-bezier(.26,.02,.74,.8) var(--delay) both!important}
   html body #cinema-room .falling-kernel:before,html body #cinema-room .falling-kernel:after,html body #cinema-room .falling-kernel span{display:block!important;opacity:1!important}
 }
+
+/* v39 FINAL — kernels emerge from the popcorn mound, then fall */
+@media(max-width:800px){
+  html body #cinema-room .falling-kernel{
+    display:block!important;z-index:16!important;left:50%!important;top:calc(50% - 155px)!important;
+    width:34px!important;height:34px!important;opacity:1!important;visibility:visible!important;
+    background:none!important;border:0!important;box-shadow:none!important;
+    animation:kernelFromMoundV39 4.15s cubic-bezier(.3,.02,.72,.84) var(--delay) both!important
+  }
+  html body #cinema-room .falling-kernel:before,html body #cinema-room .falling-kernel:after,html body #cinema-room .falling-kernel span{display:none!important;content:none!important}
+  html body #cinema-room .falling-kernel img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;filter:drop-shadow(0 5px 5px #0009) drop-shadow(0 0 3px #ffc957)!important}
+  @keyframes kernelFromMoundV39{
+    0%,8%{visibility:hidden;transform:translate(var(--mouth-x),42px) rotate(0) scale(0)}
+    9%{visibility:visible;transform:translate(var(--mouth-x),38px) rotate(0) scale(.18)}
+    18%{transform:translate(var(--mouth-x),-24px) rotate(70deg) scale(var(--scale))}
+    30%{transform:translate(var(--mid-x),10px) rotate(var(--spin-mid)) scale(var(--scale))}
+    78%{transform:translate(var(--land-x),var(--mid-y)) rotate(var(--spin-mid)) scale(var(--drop-scale))}
+    99%{visibility:visible;transform:translate(var(--land-x),var(--drop-y)) rotate(var(--spin)) scale(var(--drop-scale))}
+    100%{visibility:hidden;transform:translate(var(--land-x),var(--drop-y)) rotate(var(--spin)) scale(0)}
+  }
+}

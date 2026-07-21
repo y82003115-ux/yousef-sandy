@@ -244,8 +244,8 @@
     scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><img src="popcorn-bucket-3d-v37.png" alt="YS popcorn"></div>';
     stage.appendChild(scene);
     for(let i=0;i<20;i++){
-      const p=document.createElement('i');p.className=`popcorn-kernel falling-kernel kernel-${i%3}`;p.innerHTML='<span></span>';
-      const start=-78+(i*37)%156,land=start+(-62+(i*53)%125),spin=300+(i*113)%620,scale=.72+(i%4)*.13;p.style.setProperty('--start-x',`${start}px`);p.style.setProperty('--land-x',`${land}px`);p.style.setProperty('--drop-y',`${innerHeight*.59+80+(i%4)*27}px`);p.style.setProperty('--delay',`${.72+(i%10)*.19}s`);p.style.setProperty('--spin',`${spin}deg`);p.style.setProperty('--spin-mid',`${spin*.28}deg`);p.style.setProperty('--scale',`${scale}`);p.style.setProperty('--drop-scale',`${scale*.74}`);
+      const p=document.createElement('i');p.className=`popcorn-kernel falling-kernel kernel-${i%3}`;p.innerHTML='<img src="popcorn-kernel-v39.png" alt="">';
+      const mouth=-42+(i*23)%84,land=mouth+(-82+(i*61)%165),drop=innerHeight*.64+90+(i%4)*25,spin=300+(i*113)%620,scale=.68+(i%4)*.12;p.style.setProperty('--mouth-x',`${mouth}px`);p.style.setProperty('--mid-x',`${mouth*1.2}px`);p.style.setProperty('--land-x',`${land}px`);p.style.setProperty('--mid-y',`${drop*.72}px`);p.style.setProperty('--drop-y',`${drop}px`);p.style.setProperty('--delay',`${.82+(i%10)*.18}s`);p.style.setProperty('--spin',`${spin}deg`);p.style.setProperty('--spin-mid',`${spin*.25}deg`);p.style.setProperty('--scale',`${scale}`);p.style.setProperty('--drop-scale',`${scale*.7}`);
       scene.appendChild(p);
     }
     setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},6800);
