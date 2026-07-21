@@ -243,12 +243,13 @@
     const scene=document.createElement('div');scene.className='popcorn-3d-scene';
     scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><img class="bucket-empty" src="popcorn-bucket-empty-v40.png" alt="YS popcorn"><img class="bucket-pile" src="popcorn-pile-v40.png" alt=""></div>';
     stage.appendChild(scene);
-    for(let i=0;i<50;i++){
-      const p=document.createElement('i');p.className=`popcorn-kernel falling-kernel kernel-${i%3}`;p.innerHTML='<img src="popcorn-kernel-v39.png" alt="">';
-      const mouth=-38+(i*29)%76,angle=i*2.399963,rad=105+(i%7)*15,burstX=Math.cos(angle)*rad,burstY=-88+Math.sin(angle)*105,land=burstX*1.18+(-28+(i*47)%57),drop=innerHeight*.62+80+(i%6)*22,spin=360+(i*137)%760,scale=.82+(i%5)*.13;p.style.setProperty('--mouth-x',`${mouth}px`);p.style.setProperty('--burst-x',`${burstX.toFixed(1)}px`);p.style.setProperty('--burst-y',`${burstY.toFixed(1)}px`);p.style.setProperty('--land-x',`${land.toFixed(1)}px`);p.style.setProperty('--drop-y',`${drop}px`);p.style.setProperty('--delay',`${.38+i*.028}s`);p.style.setProperty('--spin',`${spin}deg`);p.style.setProperty('--spin-mid',`${spin*.42}deg`);p.style.setProperty('--scale',`${scale}`);p.style.setProperty('--drop-scale',`${scale*.66}`);
+    for(let i=0;i<60;i++){
+      const filling=i<34,p=document.createElement('i');p.className=`popcorn-kernel falling-kernel ${filling?'kernel-fill':'kernel-spill'} kernel-${i%3}`;p.innerHTML='<img src="popcorn-kernel-v39.png" alt="">';
+      const local=filling?i:i-34,startX=-innerWidth*.46+(i*83)%(innerWidth*.92),mouth=-72+(i*43)%145,side=(local%2?-1:1)*(105+(local%6)*21),drop=innerHeight*.58+115+(local%7)*25,spin=420+(i*149)%850,scale=.84+(i%5)*.13;
+      p.style.setProperty('--start-x',`${startX.toFixed(1)}px`);p.style.setProperty('--mouth-x',`${mouth}px`);p.style.setProperty('--spill-x',`${side}px`);p.style.setProperty('--drop-y',`${drop}px`);p.style.setProperty('--delay',`${filling?.22+i*.055:2.18+local*.07}s`);p.style.setProperty('--spin',`${spin}deg`);p.style.setProperty('--scale',`${scale}`);
       scene.appendChild(p);
     }
-    setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},5500);
+    setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},7000);
   }
   function handleCinemaMic(button){const mic=button.closest('.cinema-mic'),action=button.dataset.micAction;if(action==='take'){mic.classList.add('occupied');mic.querySelector('.mic-frame span').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').includes('ساندي')?'S':'Y';mic.querySelector('b').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').replace('الملكة ','').replace('الملك ','');mic.querySelector('small').textContent='على المايك';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="mute">غلق المايك</button><button data-mic-action="leave">ترك المايك</button>';return;}if(action==='leave'){mic.classList.remove('occupied','muted');mic.querySelector('.mic-frame span').textContent='＋';mic.querySelector('b').textContent='المايك '+mic.dataset.mic;mic.querySelector('small').textContent='متاح';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="take">أخذ المايك</button><button data-mic-action="invite">دعوة ساندي</button>';return;}if(action==='mute'){mic.classList.toggle('muted');button.textContent=mic.classList.contains('muted')?'فتح المايك':'غلق المايك';return;}if(action==='invite'){button.textContent='تم إرسال الدعوة ✓';}}
   document.addEventListener('change',async e=>{

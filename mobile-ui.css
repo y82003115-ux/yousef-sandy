@@ -388,3 +388,16 @@
     100%{transform:translate(var(--land-x),calc(var(--drop-y) + 90px)) rotate(var(--spin)) scale(0)}
   }
 }
+
+/* v43 ABSOLUTE FINAL — empty bucket fills from above, then realistically overflows */
+@media(max-width:800px){
+  html body #cinema-room .popcorn-bucket{animation:bucketFillV43 6.7s ease-in-out both!important;transform-origin:50% 84%!important}
+  html body #cinema-room .popcorn-bucket .bucket-pile{opacity:0!important;animation:pileFillV43 2.2s cubic-bezier(.2,.7,.25,1) .85s forwards!important;transform-origin:50% 64%!important}
+  html body #cinema-room .falling-kernel{top:calc(50% - 154px)!important;width:43px!important;height:43px!important}
+  html body #cinema-room .falling-kernel.kernel-fill{animation:kernelFillV43 1.42s cubic-bezier(.25,.62,.48,1) var(--delay) both!important}
+  html body #cinema-room .falling-kernel.kernel-spill{animation:kernelSpillV43 3.15s cubic-bezier(.2,.58,.42,1) var(--delay) both!important}
+  @keyframes bucketFillV43{0%{opacity:0;transform:translateY(30px) scale(.84)}8%{opacity:1;transform:translateY(0) scale(1)}42%{transform:translateX(-2px) rotate(-1.2deg) scale(1)}50%{transform:translateX(2px) rotate(1.2deg) scale(1.01)}58%,88%{opacity:1;transform:translateX(0) rotate(0) scale(1)}100%{opacity:0;transform:translateY(22px) scale(.9)}}
+  @keyframes pileFillV43{0%{opacity:0;transform:translateY(62px) scale(.58,.08)}28%{opacity:.42;transform:translateY(43px) scale(.72,.32)}62%{opacity:.82;transform:translateY(19px) scale(.9,.7)}100%{opacity:1;transform:translateY(0) scale(1)}}
+  @keyframes kernelFillV43{0%{opacity:0;transform:translate(var(--start-x),calc(-52vh - 80px)) rotate(0) scale(.25)}9%{opacity:1}72%{opacity:1;transform:translate(var(--mouth-x),-24px) rotate(calc(var(--spin) * .74)) scale(var(--scale))}88%{opacity:1;transform:translate(calc(var(--mouth-x) * .45),43px) rotate(var(--spin)) scale(calc(var(--scale) * .75))}100%{opacity:0;transform:translate(calc(var(--mouth-x) * .2),68px) rotate(var(--spin)) scale(.15)}}
+  @keyframes kernelSpillV43{0%{opacity:0;transform:translate(var(--start-x),calc(-54vh - 90px)) rotate(0) scale(.25)}7%{opacity:1}42%{opacity:1;transform:translate(var(--mouth-x),-32px) rotate(calc(var(--spin) * .42)) scale(var(--scale))}55%{opacity:1;transform:translate(var(--spill-x),26px) rotate(calc(var(--spin) * .66)) scale(var(--scale))}100%{opacity:0;transform:translate(calc(var(--spill-x) * 1.45),var(--drop-y)) rotate(var(--spin)) scale(.58)}}
+}
