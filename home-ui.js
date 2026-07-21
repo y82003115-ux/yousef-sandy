@@ -11,7 +11,7 @@
     cinema: '<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="15" rx="2"/><path d="M3 10h18M7 3l2 3m4-3 2 3m4-3 2 3"/><path d="m10 13 5 2.5-5 2.5Z"/></svg>',
     memories: '<svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l7.8-7.5a5.5 5.5 0 0 0 1-8.9Z"/></svg>',
     profile: '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>',
-    back: '<svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg>',
+    back: '<svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>',
     backpack: '<svg viewBox="0 0 24 24"><path d="M7 8V6a5 5 0 0 1 10 0v2M5 8h14l2 13H3Z"/><path d="M8 13h8v5H8Z"/></svg>'
   };
 
@@ -72,10 +72,13 @@
 
   function buildCinema() {
     const landing=document.querySelector('#cinema');if(!landing)return;
-    landing.innerHTML=`<div class="cinema-landing"><div class="cinema-landing-bg"></div><div class="cinema-entry-actions"><button class="cinema-enter" data-route="cinema-room"><b>🎟️</b><span>دخول السينما</span></button><button class="cinema-library-button" type="button"><b>🎞️</b><span>وسائط الأفلام</span></button></div><aside class="cinema-library"><header><div><small>YS PRIVATE CINEMA</small><b>وسائط السينما</b></div><button type="button">✕</button></header><nav class="cinema-media-tabs"><button class="active">الأفلام</button><button>أفلام يوسف</button><button>أفلام ساندي</button></nav><div class="cinema-media-list"><p class="cinema-media-empty">جاري تحميل الأفلام المحفوظة…</p></div><label class="cinema-add-media">＋ إضافة فيلم إلى الوسائط<input class="cinema-storage-input" type="file" accept="video/*"></label><p class="cinema-upload-status"></p></aside></div>`;
-    const cinema=document.createElement('section');cinema.className='page app-extra-page';cinema.id='cinema-room';cinema.innerHTML=`<div class="cinema-room"><div class="cinema-live-bg"></div><header><b>سينما يوسف وساندي</b><span>9D CINEMA</span></header><section class="movie-screen"><div class="screen-glow"></div><video class="cinema-video" controls playsinline></video><div class="movie-placeholder"><b>🎞️</b><h2>الشاشة الملكية المباشرة</h2><p>اختارا فيلمًا محفوظًا من وسائط السينما</p><button class="cinema-library-button" type="button">وسائط الأفلام</button></div></section><nav class="cinema-effects"><button>🌬️ هواء 9D</button><button>✨ نجوم</button><button>🌧️ مطر</button><button>💗 رومانسية</button><button>🔊 صوت محيطي</button></nav><section class="cinema-mics"><article><div>S</div><b>ساندي</b><small>المايك 1</small></article><span>♥</span><article><div>Y</div><b>يوسف</b><small>المايك 2</small></article></section><footer><button type="button">🎁</button><form><input placeholder="اكتب أثناء الفيلم..."><button class="send-plane" aria-label="إرسال"><svg viewBox="0 0 24 24"><path d="M21 3 3 12l18 9-4-9Z"/></svg></button></form><button type="button">🎙️</button></footer></div>`;shell.appendChild(cinema);
+    landing.innerHTML=`<div class="cinema-landing"><div class="cinema-landing-bg"></div><div class="cinema-entry-actions"><button class="cinema-enter" data-route="cinema-room"><b>🎥</b><span>السينما</span></button><button class="cinema-library-button" type="button"><b>🎞️</b><span>الأفلام</span></button></div><aside class="cinema-library"><header><label class="cinema-plus" aria-label="إضافة فيلم">＋<input class="cinema-storage-input" type="file" accept="video/*"></label><b>الأفلام</b><button class="cinema-library-close" type="button" aria-label="رجوع">‹</button></header><div class="cinema-media-list"><p class="cinema-media-empty">جاري تحميل الأفلام…</p></div><p class="cinema-upload-status"></p></aside></div>`;
+    const player=document.createElement('section');player.className='page app-extra-page';player.id='cinema-player';player.innerHTML=`<div class="standalone-player"><header><b>مشغل الأفلام</b><button class="player-close" type="button">‹</button></header><video class="universal-video" controls playsinline preload="metadata"></video><div class="player-title"></div><button class="download-film" type="button">تنزيل الفيلم ⬇</button></div>`;shell.appendChild(player);
+    const cinema=document.createElement('section');cinema.className='page app-extra-page';cinema.id='cinema-room';cinema.innerHTML=`<div class="cinema-room"><div class="cinema-live-bg"></div><header><b>السينما</b></header><section class="movie-screen"><video class="cinema-video" controls playsinline preload="metadata"></video><button class="cinema-watch" type="button">مشاهدة</button><aside class="watch-sources"><button data-source="gallery">المعرض</button><button data-source="films">الأفلام</button><button data-source="memories">الذكريات</button><button data-source="moments">اللحظات</button><input class="cinema-gallery-input" type="file" accept="video/*"></aside></section><section class="cinema-mics"><article class="cinema-mic occupied" data-mic="1"><div class="mic-frame frame-one"><span>Y</span></div><b>يوسف</b><small>المايك 1</small><div class="mic-actions"><button data-mic-action="mute">غلق المايك</button><button data-mic-action="leave">ترك المايك</button></div></article><span class="cinema-bond">💍<i>♥</i></span><article class="cinema-mic" data-mic="2"><div class="mic-frame frame-two"><span>＋</span></div><b>المايك 2</b><small>متاح لساندي</small><div class="mic-actions"><button data-mic-action="take">أخذ المايك</button><button data-mic-action="invite">دعوة ساندي</button></div></article></section><div class="cinema-audience"><span class="audience-avatar">Y</span><small>يوسف داخل السينما</small></div><div class="cinema-entry-banner"><span>Y</span><b>يوسف دخل السينما</b><em>Level 32</em></div><footer class="cinema-controls"><button class="cinema-emote-button" type="button">☺</button><button class="cinema-effects-button" type="button">✨</button><button class="cinema-mic-button" type="button">🎙️</button></footer><aside class="cinema-panel emote-panel"><button>😂</button><button>😍</button><button>🥰</button><button>😘</button><button>😮</button><button>👏</button><button>💃</button><button>❤️</button></aside><aside class="cinema-panel effects-panel"><button data-fx="popcorn">🍿<small>فشار</small></button><button data-fx="cola">🥤<small>كولا</small></button><button data-fx="icecream">🍦<small>آيس كريم</small></button><button data-fx="baklava">🧁<small>بقلاوة</small></button><button data-fx="wind">🌬️<small>هواء</small></button><button data-fx="snow">❄️<small>ثلج</small></button><button data-fx="rain">🌧️<small>مطر</small></button><button data-fx="hearts">💞<small>قلوب</small></button><button data-fx="stars">✨<small>نجوم</small></button><button data-fx="roses">🌹<small>ورود</small></button></aside><div class="cinema-fx-stage"></div></div>`;shell.appendChild(cinema);
+    cinema.querySelectorAll('.cinema-mic').forEach((mic,index)=>{const picker=document.createElement('div');picker.className='frame-picker';picker.innerHTML='<button class="active" data-frame="one">◉</button><button data-frame="two">◉</button><button data-frame="three">◉</button>';mic.insertBefore(picker,mic.querySelector('.mic-actions'));});
   }
   buildCinema();
+  document.querySelectorAll('.universal-video,.cinema-video').forEach(video=>{const jumps=document.createElement('div');jumps.className='video-jumps';jumps.innerHTML='<button type="button" data-jump="-10">↶ 10</button><button type="button" data-jump="10">10 ↷</button>';video.insertAdjacentElement('afterend',jumps);});
 
   let roomScroll=0;
   document.addEventListener('focusin',event=>{
@@ -109,7 +112,7 @@
   document.body.appendChild(bottom);
 
   const map = { rooms: 'room', moments: 'memories' };
-  const titles = { room: 'الروم الملكي', messages: 'الرسائل', 'private-chat': 'ساندي', profile: 'الملف الشخصي', backpack: 'حقيبة الظهر', tasks: 'المهام', games: 'الألعاب', memories: 'الذكريات', cinema: 'سينمتنا', 'cinema-room': 'غرفة السينما', store: 'المتجر', studio: 'استوديو الهدايا', admin: 'إدارة يوسف' };
+  const titles = { room: 'الروم الملكي', messages: 'الرسائل', 'private-chat': 'ساندي', profile: 'الملف الشخصي', backpack: 'حقيبة الظهر', tasks: 'المهام', games: 'الألعاب', memories: 'الذكريات', cinema: 'سينمتنا', 'cinema-room': 'السينما', 'cinema-player':'الأفلام', store: 'المتجر', studio: 'استوديو الهدايا', admin: 'إدارة يوسف' };
 
   function setPage(page, push = true) {
     page = map[page] || page;
@@ -118,7 +121,7 @@
     home.style.display = 'none';
     document.querySelector('.tabs').style.display = 'none';
     document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p === target));
-    const immersive=['room','cinema-room','private-chat'].includes(page);
+    const immersive=['room','cinema-room','cinema-player','private-chat'].includes(page);
     document.body.classList.toggle('inner-view',immersive);
     document.body.classList.toggle('section-view',!immersive);
     innerHeader.classList.add('show');
@@ -154,10 +157,22 @@
     if (route) { e.preventDefault(); setPage(route.dataset.route); }
     const message = e.target.closest('[data-message="sandy"]');
     if (message) setPage('private-chat');
-    if(e.target.closest('.cinema-library-button')) { document.querySelector('.cinema-library')?.classList.add('open'); loadCinemaMedia(); }
-    if(e.target.closest('.cinema-library header button')) document.querySelector('.cinema-library')?.classList.remove('open');
+    if(e.target.closest('.cinema-library-button')) { const library=document.querySelector('.cinema-library');library.dataset.target=e.target.closest('#cinema-room')?'cinema':'player';library.classList.add('open');loadCinemaMedia(); }
+    if(e.target.closest('.cinema-library-close')) document.querySelector('.cinema-library')?.classList.remove('open');
     const film=e.target.closest('[data-cinema-film]');
-    if(film){ playCinemaFilm(film.dataset.cinemaFilm); }
+    if(film){ document.querySelector('.cinema-library')?.dataset.target==='cinema'?playInCinema(film.dataset.cinemaFilm):playCinemaFilm(film.dataset.cinemaFilm,film.dataset.filmTitle); }
+    if(e.target.closest('.player-close')) history.back();
+    if(e.target.closest('.download-film')) downloadCurrentFilm();
+    if(e.target.closest('.cinema-watch')) document.querySelector('.watch-sources')?.classList.toggle('open');
+    const source=e.target.closest('[data-source]');if(source) chooseCinemaSource(source.dataset.source);
+    if(e.target.closest('.cinema-emote-button')) toggleCinemaPanel('.emote-panel');
+    if(e.target.closest('.cinema-effects-button')) toggleCinemaPanel('.effects-panel');
+    if(e.target.closest('.cinema-mic-button')) document.querySelector('.cinema-mics')?.classList.toggle('manage');
+    const emote=e.target.closest('.emote-panel button');if(emote) launchCinemaFx(emote.textContent,'emote');
+    const effect=e.target.closest('[data-fx]');if(effect) launchCinemaFx(effect.firstChild.textContent,effect.dataset.fx);
+    const micAction=e.target.closest('[data-mic-action]');if(micAction) handleCinemaMic(micAction);
+    const frame=e.target.closest('[data-frame]');if(frame){const mic=frame.closest('.cinema-mic'),ring=mic.querySelector('.mic-frame');ring.className=`mic-frame frame-${frame.dataset.frame}`;mic.querySelectorAll('[data-frame]').forEach(b=>b.classList.toggle('active',b===frame));}
+    const jump=e.target.closest('[data-jump]');if(jump){const video=jump.parentElement.previousElementSibling;if(video?.tagName==='VIDEO')video.currentTime=Math.max(0,Math.min(video.duration||Infinity,video.currentTime+Number(jump.dataset.jump)));}
   });
   bottom.addEventListener('click', e => {
     const button = e.target.closest('[data-home-nav]');
@@ -173,13 +188,21 @@
       list.innerHTML='';
       for(const file of data.filter(x=>x.name&&!x.name.endsWith('.emptyFolderPlaceholder'))){
         const {data:signed}=await db.storage.from('cinema-films').createSignedUrl(file.name,3600);
-        const parts=file.name.split('__'),owner=parts[0]==='sandy'?'ساندي':'يوسف',title=(parts.slice(2).join('__')||file.name).replace(/\.[^.]+$/,'');
-        const card=document.createElement('button');card.className='cinema-film-card';card.dataset.cinemaFilm=signed?.signedUrl||'';card.innerHTML=`<span>▶</span><div><b>${title}</b><small>أضافه ${owner}</small></div>`;list.appendChild(card);
+        const parts=file.name.split('__'),title=(parts.slice(2).join('__')||file.name).replace(/\.[^.]+$/,'');
+        const card=document.createElement('button');card.className='cinema-film-card';card.dataset.cinemaFilm=signed?.signedUrl||'';card.dataset.filmTitle=title;card.innerHTML=`<div class="film-preview"><video src="${signed?.signedUrl||''}" muted playsinline preload="metadata"></video><span>▶</span></div><b>${title}</b>`;list.appendChild(card);
+        const preview=card.querySelector('video');preview.addEventListener('loadedmetadata',()=>{preview.currentTime=Math.min(2,Math.max(0,preview.duration/8||0))},{once:true});
       }
     }catch(err){list.innerHTML='<p class="cinema-media-empty">يلزم تفعيل مخزن cinema-films في Supabase</p>';}
   }
-  function playCinemaFilm(url){if(!url)return;const video=document.querySelector('.cinema-video');video.src=url;document.querySelector('.movie-screen')?.classList.add('has-video');document.querySelector('.cinema-library')?.classList.remove('open');setPage('cinema-room');video.play().catch(()=>{});}
+  function playCinemaFilm(url,title='فيلم'){if(!url)return;const video=document.querySelector('.universal-video');video.src=url;video.dataset.download=url;document.querySelector('.player-title').textContent=title;document.querySelector('.cinema-library')?.classList.remove('open');setPage('cinema-player');video.play().catch(()=>{});}
+  async function downloadCurrentFilm(){const video=document.querySelector('.universal-video');if(!video?.dataset.download)return;const button=document.querySelector('.download-film'),old=button.textContent;button.textContent='جاري التنزيل…';try{const response=await fetch(video.dataset.download),blob=await response.blob(),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=(document.querySelector('.player-title')?.textContent||'film')+'.mp4';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}catch{location.href=video.dataset.download}finally{button.textContent=old}}
+  function playInCinema(url){if(!url)return;const video=document.querySelector('.cinema-video');video.src=url;document.querySelector('.cinema-library')?.classList.remove('open');setPage('cinema-room');video.play().catch(()=>{});}
+  function chooseCinemaSource(source){document.querySelector('.watch-sources')?.classList.remove('open');if(source==='gallery'){document.querySelector('.cinema-gallery-input')?.click();return;}if(source==='films'){const library=document.querySelector('.cinema-library');library.dataset.target='cinema';library.classList.add('open');loadCinemaMedia();return;}setPage('memories');}
+  function toggleCinemaPanel(selector){document.querySelectorAll('.cinema-panel').forEach(p=>p.classList.toggle('open',p.matches(selector)&&!p.classList.contains('open')));}
+  function launchCinemaFx(symbol,type){const stage=document.querySelector('.cinema-fx-stage');if(!stage)return;if(type==='emote'){const mic=document.querySelector('.cinema-mic.occupied'),bubble=document.createElement('i');bubble.className='mic-emote';bubble.textContent=symbol;mic.appendChild(bubble);setTimeout(()=>bubble.remove(),2500);}stage.innerHTML='';for(let i=0;i<(type==='emote'?6:14);i++){const s=document.createElement('i');s.textContent=symbol;s.style.setProperty('--x',`${8+(i*31)%84}%`);s.style.setProperty('--delay',`${i*.08}s`);stage.appendChild(s);}stage.className=`cinema-fx-stage active ${type}`;setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},3200);}
+  function handleCinemaMic(button){const mic=button.closest('.cinema-mic'),action=button.dataset.micAction;if(action==='take'){mic.classList.add('occupied');mic.querySelector('.mic-frame span').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').includes('ساندي')?'S':'Y';mic.querySelector('b').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').replace('الملكة ','').replace('الملك ','');mic.querySelector('small').textContent='على المايك';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="mute">غلق المايك</button><button data-mic-action="leave">ترك المايك</button>';return;}if(action==='leave'){mic.classList.remove('occupied','muted');mic.querySelector('.mic-frame span').textContent='＋';mic.querySelector('b').textContent='المايك '+mic.dataset.mic;mic.querySelector('small').textContent='متاح';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="take">أخذ المايك</button><button data-mic-action="invite">دعوة ساندي</button>';return;}if(action==='mute'){mic.classList.toggle('muted');button.textContent=mic.classList.contains('muted')?'فتح المايك':'غلق المايك';return;}if(action==='invite'){button.textContent='تم إرسال الدعوة ✓';}}
   document.addEventListener('change',async e=>{
+    const gallery=e.target.closest('.cinema-gallery-input');if(gallery?.files?.[0]){const url=URL.createObjectURL(gallery.files[0]),video=document.querySelector('.cinema-video');video.src=url;video.play().catch(()=>{});return;}
     const input=e.target.closest('.cinema-storage-input');if(!input?.files?.[0])return;
     const status=document.querySelector('.cinema-upload-status'),file=input.files[0];status.textContent='جاري حفظ الفيلم…';
     try{const who=(document.querySelector('#currentName')?.textContent||'يوسف').includes('ساندي')?'sandy':'yousef';const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');const path=`${who}__${Date.now()}__${safe}`;const {error}=await db.storage.from('cinema-films').upload(path,file,{cacheControl:'3600'});if(error)throw error;status.textContent='تم حفظ الفيلم في الوسائط ✓';input.value='';loadCinemaMedia();}catch(err){status.textContent='تعذر الحفظ: فعّل مخزن الأفلام أولًا';}
@@ -192,6 +215,9 @@
     if (!shell.classList.contains('ready')) return;
     document.querySelector('#homeUser').textContent = document.querySelector('#currentName').textContent.replace('الملك ', '').replace('الملكة ', '');
     document.querySelector('#homeLove').textContent = document.querySelector('#balance').textContent;
+    const fullName=document.querySelector('#currentName')?.textContent||'الملك يوسف',isSandy=fullName.includes('ساندي'),shortName=isSandy?'ساندي':'يوسف',letter=isSandy?'S':'Y';
+    const firstMic=document.querySelector('.cinema-mic[data-mic="1"]');if(firstMic){firstMic.querySelector('.mic-frame span').textContent=letter;firstMic.querySelector('b').textContent=shortName;}
+    document.querySelectorAll('.audience-avatar,.cinema-entry-banner>span').forEach(node=>node.textContent=letter);const audience=document.querySelector('.cinema-audience small');if(audience)audience.textContent=`${shortName} داخل السينما`;const banner=document.querySelector('.cinema-entry-banner b');if(banner)banner.textContent=`${shortName} دخل السينما`;
     if (!history.state?.appPage) history.replaceState({ appPage: 'home' }, '', location.pathname + location.search);
     showHome(false);
   });
