@@ -310,3 +310,40 @@
     100%{visibility:hidden;transform:translate(var(--land-x),var(--drop-y)) rotate(var(--spin)) scale(0)}
   }
 }
+
+/* v40 FINAL — two-layer bucket, 50 larger kernels, visibly draining mound */
+@media(max-width:800px){
+  html body #cinema-room .popcorn-bucket{width:238px!important;height:238px!important;margin:4px 0 0!important;animation:bucketPourV40 9.7s cubic-bezier(.17,.76,.22,1) both!important}
+  html body #cinema-room .popcorn-bucket img{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;transform:none!important;transform-origin:50% 76%!important}
+  html body #cinema-room .popcorn-bucket .bucket-empty{z-index:2!important;filter:drop-shadow(0 24px 22px #000b) drop-shadow(0 0 18px #ffbd5985)!important}
+  html body #cinema-room .popcorn-bucket .bucket-pile{z-index:3!important;animation:pileDrainV40 9.2s cubic-bezier(.3,.02,.72,.88) .35s both!important;filter:drop-shadow(0 4px 4px #0007) drop-shadow(0 0 10px #ffd46b85)!important}
+  html body #cinema-room .falling-kernel{top:calc(50% - 154px)!important;width:43px!important;height:43px!important;animation:kernelPourV40 4.05s cubic-bezier(.28,.01,.73,.86) var(--delay) both!important}
+  @keyframes pileDrainV40{
+    0%,8%{opacity:1;transform:translateY(0) scaleY(1)}
+    30%{opacity:1;transform:translateY(8px) scaleY(.88)}
+    55%{opacity:.94;transform:translateY(24px) scaleY(.65)}
+    78%{opacity:.72;transform:translateY(43px) scaleY(.38)}
+    100%{opacity:.08;transform:translateY(67px) scaleY(.12)}
+  }
+  @keyframes kernelPourV40{
+    0%,8%{transform:translate(var(--mouth-x),45px) rotate(0) scale(0)}
+    10%{transform:translate(var(--mouth-x),38px) rotate(15deg) scale(.22)}
+    19%{transform:translate(var(--mouth-x),-30px) rotate(85deg) scale(var(--scale))}
+    31%{transform:translate(var(--mid-x),12px) rotate(var(--spin-mid)) scale(var(--scale))}
+    78%{transform:translate(var(--land-x),var(--mid-y)) rotate(var(--spin-mid)) scale(var(--drop-scale))}
+    99%{transform:translate(var(--land-x),var(--drop-y)) rotate(var(--spin)) scale(var(--drop-scale))}
+    100%{transform:translate(var(--land-x),var(--drop-y)) rotate(var(--spin)) scale(0)}
+  }
+  @keyframes bucketPourV40{
+    0%{opacity:0;transform:translate3d(0,150px,-180px) rotateX(30deg) scale(.22)}
+    9%{opacity:1;transform:translate3d(0,-14px,35px) rotateX(-7deg) scale(1.08)}
+    18%{transform:translate3d(-34px,-8px,42px) rotateY(17deg) rotateZ(-11deg) scale(1.04)}
+    28%{transform:translate3d(34px,-11px,48px) rotateY(-17deg) rotateZ(12deg) scale(1.07)}
+    38%{transform:translate3d(-27px,-7px,40px) rotateY(14deg) rotateZ(-9deg) scale(1.04)}
+    48%{transform:translate3d(26px,-10px,44px) rotateY(-13deg) rotateZ(9deg) scale(1.06)}
+    58%{transform:translate3d(-19px,-5px,32px) rotateY(10deg) rotateZ(-7deg) scale(1.03)}
+    68%{transform:translate3d(17px,-7px,35px) rotateY(-9deg) rotateZ(6deg) scale(1.04)}
+    80%,92%{opacity:1;transform:translate3d(0,0,0) rotateY(0) rotateZ(0) scale(1)}
+    100%{opacity:0;transform:translate3d(0,90px,-100px) rotateX(18deg) scale(.62)}
+  }
+}
