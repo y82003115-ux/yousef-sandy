@@ -243,15 +243,14 @@
     const scene=document.createElement('div');scene.className='popcorn-3d-scene';
     scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><div class="popcorn-top"></div><div class="popcorn-stripes"></div><b>YS<br><small>CINEMA</small></b></div>';
     stage.appendChild(scene);
-    const pieces=['🍿','●','●','✦'];
-    for(let i=0;i<26;i++){
-      const p=document.createElement('i');p.className='popcorn-kernel';p.textContent=pieces[i%pieces.length];
-      const angle=(-155+(i*67)%130)*Math.PI/180,distance=105+(i*43)%235;
-      p.style.setProperty('--tx',`${Math.cos(angle)*distance}px`);p.style.setProperty('--ty',`${Math.sin(angle)*distance-70}px`);
-      p.style.setProperty('--rz',`${-160+(i*79)%320}deg`);p.style.setProperty('--delay',`${.72+(i%7)*.055}s`);p.style.setProperty('--scale',`${.55+(i%5)*.16}`);
+    for(let i=0;i<42;i++){
+      const p=document.createElement('i');p.className=`popcorn-kernel kernel-${i%3}`;p.innerHTML='<span></span>';
+      const side=i%2?-1:1,spread=34+(i*47)%245,peak=120+(i*31)%250;
+      p.style.setProperty('--tx',`${side*spread}px`);p.style.setProperty('--land',`${side*spread*1.18}px`);p.style.setProperty('--peak',`${-peak}px`);p.style.setProperty('--fall',`${innerHeight*.58+80+(i%5)*18}px`);
+      const scale=.52+(i%6)*.13;p.style.setProperty('--rx',`${180+(i*83)%540}deg`);p.style.setProperty('--ry',`${240+(i*67)%720}deg`);p.style.setProperty('--rz',`${-220+(i*91)%620}deg`);p.style.setProperty('--delay',`${.72+(i%9)*.065}s`);p.style.setProperty('--scale',`${scale}`);p.style.setProperty('--end-scale',`${scale*.72}`);
       scene.appendChild(p);
     }
-    setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},4700);
+    setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},5700);
   }
   function handleCinemaMic(button){const mic=button.closest('.cinema-mic'),action=button.dataset.micAction;if(action==='take'){mic.classList.add('occupied');mic.querySelector('.mic-frame span').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').includes('ساندي')?'S':'Y';mic.querySelector('b').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').replace('الملكة ','').replace('الملك ','');mic.querySelector('small').textContent='على المايك';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="mute">غلق المايك</button><button data-mic-action="leave">ترك المايك</button>';return;}if(action==='leave'){mic.classList.remove('occupied','muted');mic.querySelector('.mic-frame span').textContent='＋';mic.querySelector('b').textContent='المايك '+mic.dataset.mic;mic.querySelector('small').textContent='متاح';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="take">أخذ المايك</button><button data-mic-action="invite">دعوة ساندي</button>';return;}if(action==='mute'){mic.classList.toggle('muted');button.textContent=mic.classList.contains('muted')?'فتح المايك':'غلق المايك';return;}if(action==='invite'){button.textContent='تم إرسال الدعوة ✓';}}
   document.addEventListener('change',async e=>{
