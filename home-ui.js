@@ -207,9 +207,9 @@
     if(type==='emote'){
       const mic=document.querySelector('.cinema-mic.occupied'),bubble=document.createElement('i');bubble.className='mic-emote';bubble.textContent=symbol;mic?.appendChild(bubble);setTimeout(()=>bubble.remove(),2400);return;
     }
-    if(type==='snow'||type==='rain'){
-      const glyph=type==='snow'?'❄':'│',count=type==='snow'?22:34;
-      for(let i=0;i<count;i++){const p=document.createElement('i');p.className=`weather-particle ${type}`;p.textContent=glyph;p.style.setProperty('--x',`${(i*37)%101}%`);p.style.setProperty('--delay',`${(i%9)*.16}s`);p.style.setProperty('--drift',`${-28+(i*19)%57}px`);stage.appendChild(p)}
+    if(type==='snow'){launchSnowstorm(stage);return;}
+    if(type==='rain'){
+      for(let i=0;i<34;i++){const p=document.createElement('i');p.className='weather-particle rain';p.textContent='│';p.style.setProperty('--x',`${(i*37)%101}%`);p.style.setProperty('--delay',`${(i%9)*.16}s`);p.style.setProperty('--drift',`${-28+(i*19)%57}px`);stage.appendChild(p)}
       setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},4300);return;
     }
     const y=document.querySelector('.cinema-mic[data-mic="1"] .mic-frame'),sandy=document.querySelector('.cinema-mic[data-mic="2"] .mic-frame');
@@ -218,6 +218,16 @@
     const sx=(from?.left||40)+(from?.width||70)/2,sy=(from?.top||innerHeight*.55)+(from?.height||70)/2,ex=(to?.left||innerWidth-90)+(to?.width||70)/2,ey=(to?.top||innerHeight*.55)+(to?.height||70)/2;
     gift.style.setProperty('--sx',`${sx}px`);gift.style.setProperty('--sy',`${sy}px`);gift.style.setProperty('--mx',`${(sx+ex)/2}px`);gift.style.setProperty('--my',`${(sy+ey)/2-105}px`);gift.style.setProperty('--ex',`${ex}px`);gift.style.setProperty('--ey',`${ey}px`);stage.appendChild(gift);
     setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},2600);
+  }
+
+  function launchSnowstorm(stage){
+    const canvas=document.createElement('canvas'),fog=document.createElement('div');canvas.className='cinema-snow-canvas';fog.className='cinema-snow-fog';stage.append(canvas,fog);
+    const ctx=canvas.getContext('2d'),dpr=Math.min(devicePixelRatio||1,2);let w=0,h=0,start=performance.now(),raf;
+    const resize=()=>{w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0)};resize();
+    const flakes=Array.from({length:165},(_,i)=>({x:Math.random()*innerWidth,y:-Math.random()*innerHeight,r:.7+Math.random()*4.8,z:.3+Math.random()*.9,a:.25+Math.random()*.7,v:1.2+Math.random()*4.5,spin:Math.random()*6.28,tw:(Math.random()-.5)*.08}));
+    const drawFlake=(f)=>{ctx.save();ctx.translate(f.x,f.y);ctx.rotate(f.spin);ctx.globalAlpha=f.a;ctx.strokeStyle=f.r>3?'#f7fdff':'#dff5ff';ctx.lineWidth=Math.max(.55,f.r*.18);ctx.shadowColor='#b9eaff';ctx.shadowBlur=f.r*2;for(let k=0;k<3;k++){ctx.rotate(Math.PI/3);ctx.beginPath();ctx.moveTo(-f.r,0);ctx.lineTo(f.r,0);ctx.stroke()}ctx.restore()};
+    const frame=now=>{const t=(now-start)/1000,life=Math.min(1,t/1.1)*Math.min(1,(7.2-t)/1.35);if(t>7.35){cancelAnimationFrame(raf);stage.className='cinema-fx-stage';stage.innerHTML='';return}ctx.clearRect(0,0,w,h);const gust=(Math.sin(t*2.6)*7+Math.sin(t*.82)*15)*(0.35+life);flakes.forEach(f=>{f.x+=(gust*f.z+Math.sin(f.y*.018+t)*1.2)*life;f.y+=f.v*(.65+life*1.4);f.spin+=f.tw;if(f.y>h+15||f.x>w+30){f.y=-20-Math.random()*180;f.x=-30+Math.random()*(w+50)}if(f.x<-40)f.x=w+20;f.a=(.2+f.z*.7)*life;drawFlake(f)});raf=requestAnimationFrame(frame)};
+    addEventListener('resize',resize,{once:true});raf=requestAnimationFrame(frame);
   }
   function handleCinemaMic(button){const mic=button.closest('.cinema-mic'),action=button.dataset.micAction;if(action==='take'){mic.classList.add('occupied');mic.querySelector('.mic-frame span').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').includes('ساندي')?'S':'Y';mic.querySelector('b').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').replace('الملكة ','').replace('الملك ','');mic.querySelector('small').textContent='على المايك';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="mute">غلق المايك</button><button data-mic-action="leave">ترك المايك</button>';return;}if(action==='leave'){mic.classList.remove('occupied','muted');mic.querySelector('.mic-frame span').textContent='＋';mic.querySelector('b').textContent='المايك '+mic.dataset.mic;mic.querySelector('small').textContent='متاح';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="take">أخذ المايك</button><button data-mic-action="invite">دعوة ساندي</button>';return;}if(action==='mute'){mic.classList.toggle('muted');button.textContent=mic.classList.contains('muted')?'فتح المايك':'غلق المايك';return;}if(action==='invite'){button.textContent='تم إرسال الدعوة ✓';}}
   document.addEventListener('change',async e=>{
