@@ -1,5 +1,5 @@
 (function(){
-  const VERSION='20260721-34';
+  const VERSION='20260721-35';
   const VERSION_KEY='ys-love-build';
   const previousVersion=localStorage.getItem(VERSION_KEY);
   if(previousVersion!==VERSION){
@@ -19,7 +19,7 @@
   const home=document.createElement('script');home.src='home-ui.js?v='+VERSION;document.body.appendChild(home);
   const manifest=document.createElement('link');manifest.rel='manifest';manifest.href='manifest.webmanifest?v='+VERSION;document.head.appendChild(manifest);
   const theme=document.createElement('meta');theme.name='theme-color';theme.content='#d4c2f6';document.head.appendChild(theme);
-  if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js?v='+VERSION,{updateViaCache:'none'}).then(registration=>registration.update()));
+  if('serviceWorker' in navigator)window.addEventListener('load',async()=>{const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(r=>r.unregister()));const registration=await navigator.serviceWorker.register('sw.js?v='+VERSION,{updateViaCache:'none'});registration.update()});
   document.addEventListener('click',e=>{if(e.target.closest('.write:before'))document.querySelector('.gifts-mini')?.classList.toggle('open')});
   const chat=document.querySelector('.write');if(chat){chat.addEventListener('dblclick',()=>document.querySelector('.gifts-mini')?.classList.toggle('open'));}
   const giftPanel=document.querySelector('.gifts-mini');if(giftPanel){
