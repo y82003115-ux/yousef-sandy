@@ -1,5 +1,5 @@
 (function(){
-  const VERSION='20260721-19';
+  const VERSION='20260721-21';
   const VERSION_KEY='ys-love-build';
   const previousVersion=localStorage.getItem(VERSION_KEY);
   if(previousVersion!==VERSION){
