@@ -347,3 +347,44 @@
     100%{opacity:0;transform:translate3d(0,90px,-100px) rotateX(18deg) scale(.62)}
   }
 }
+
+/* v41 FINAL — subtle cinematic bucket tilt */
+@media(max-width:800px){
+  html body #cinema-room .popcorn-bucket{animation:bucketGentleV41 9.7s cubic-bezier(.25,.7,.25,1) both!important;transform-origin:50% 82%!important}
+  @keyframes bucketGentleV41{
+    0%{opacity:0;transform:translate3d(0,95px,-100px) rotateX(18deg) scale(.46)}
+    10%{opacity:1;transform:translate3d(0,-5px,18px) rotateZ(0) scale(1.03)}
+    22%{transform:translate3d(-8px,-3px,22px) rotateY(5deg) rotateZ(-6deg) scale(1.02)}
+    36%{transform:translate3d(8px,-4px,24px) rotateY(-5deg) rotateZ(6deg) scale(1.025)}
+    50%{transform:translate3d(-6px,-2px,20px) rotateY(4deg) rotateZ(-5deg) scale(1.015)}
+    64%{transform:translate3d(6px,-3px,21px) rotateY(-4deg) rotateZ(5deg) scale(1.02)}
+    78%{transform:translate3d(-3px,-1px,10px) rotateY(2deg) rotateZ(-2deg) scale(1.01)}
+    90%{opacity:1;transform:translate3d(0,0,0) rotateY(0) rotateZ(0) scale(1)}
+    100%{opacity:0;transform:translate3d(0,55px,-65px) rotateX(12deg) scale(.72)}
+  }
+}
+
+/* v42 FINAL — match the 5-second reference: radial popcorn burst */
+@media(max-width:800px){
+  html body #cinema-room .popcorn-bucket{animation:bucketReferenceV42 5.15s ease-in-out both!important;transform-origin:50% 82%!important}
+  html body #cinema-room .popcorn-bucket .bucket-pile{opacity:1!important;animation:none!important;transform:none!important}
+  html body #cinema-room .falling-kernel{top:calc(50% - 154px)!important;width:41px!important;height:41px!important;animation:kernelRadialV42 4.45s cubic-bezier(.2,.62,.52,.98) var(--delay) both!important}
+  @keyframes bucketReferenceV42{
+    0%{opacity:0;transform:translateY(34px) scale(.82)}
+    10%{opacity:1;transform:translateY(0) rotateZ(0) scale(1)}
+    24%{transform:translateX(-3px) rotateZ(-2.5deg) scale(1.01)}
+    38%{transform:translateX(3px) rotateZ(2.5deg) scale(1.01)}
+    52%{transform:translateX(-2px) rotateZ(-1.8deg) scale(1)}
+    66%{transform:translateX(2px) rotateZ(1.8deg) scale(1.005)}
+    82%{opacity:1;transform:translateX(0) rotateZ(0) scale(1)}
+    100%{opacity:0;transform:translateY(22px) scale(.88)}
+  }
+  @keyframes kernelRadialV42{
+    0%,6%{transform:translate(var(--mouth-x),42px) rotate(0) scale(0)}
+    9%{transform:translate(var(--mouth-x),30px) rotate(15deg) scale(.22)}
+    30%{transform:translate(var(--burst-x),var(--burst-y)) rotate(var(--spin-mid)) scale(var(--scale))}
+    48%{transform:translate(var(--burst-x),calc(var(--burst-y) + 34px)) rotate(var(--spin-mid)) scale(var(--scale))}
+    86%{transform:translate(var(--land-x),var(--drop-y)) rotate(var(--spin)) scale(var(--drop-scale))}
+    100%{transform:translate(var(--land-x),calc(var(--drop-y) + 90px)) rotate(var(--spin)) scale(0)}
+  }
+}
