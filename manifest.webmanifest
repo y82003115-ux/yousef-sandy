@@ -1,9 +1,9 @@
 {
   "name":"Yousef Sandy",
   "short_name":"YS Love",
-  "id":"./?app=ys-love-v30",
+  "id":"./?app=ys-love-v31",
   "description":"قلعة الحب الخاصة بيوسف وساندي",
-  "start_url":"./?app=ys-love-v30",
+  "start_url":"./?app=ys-love-v31",
   "scope":"./",
   "display":"standalone",
   "orientation":"portrait",
