@@ -241,17 +241,15 @@
 
   function launchPopcornBurst(stage){
     const scene=document.createElement('div');scene.className='popcorn-3d-scene';
-    scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><div class="popcorn-top"></div><div class="popcorn-stripes"></div><b>YS<br><small>CINEMA</small></b></div>';
+    scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><div class="popcorn-top"></div><div class="popcorn-stripes"></div></div>';
     stage.appendChild(scene);
-    const top=scene.querySelector('.popcorn-top');for(let i=0;i<22;i++){const full=document.createElement('span');full.className=`bucket-kernel k${i%4}`;full.style.setProperty('--kx',`${7+(i*37)%88}%`);full.style.setProperty('--ky',`${4+(i*23)%58}%`);full.style.setProperty('--kr',`${(i*71)%360}deg`);full.style.setProperty('--ks',`${.72+(i%5)*.1}`);top.appendChild(full)}
-    for(let i=0;i<42;i++){
-      const p=document.createElement('i');p.className=`popcorn-kernel kernel-${i%3}`;p.innerHTML='<span></span>';
-      const side=i%2?-1:1,spread=34+(i*47)%245,peak=120+(i*31)%250;
-      p.style.setProperty('--tx',`${side*spread}px`);p.style.setProperty('--land',`${side*spread*1.18}px`);p.style.setProperty('--peak',`${-peak}px`);p.style.setProperty('--fall',`${innerHeight*.58+80+(i%5)*18}px`);
-      const scale=.52+(i%6)*.13;p.style.setProperty('--rx',`${180+(i*83)%540}deg`);p.style.setProperty('--ry',`${240+(i*67)%720}deg`);p.style.setProperty('--rz',`${-220+(i*91)%620}deg`);p.style.setProperty('--delay',`${.72+(i%9)*.065}s`);p.style.setProperty('--scale',`${scale}`);p.style.setProperty('--end-scale',`${scale*.72}`);
+    const top=scene.querySelector('.popcorn-top');for(let i=0;i<18;i++){const full=document.createElement('span');full.className=`bucket-kernel k${i%4}`;full.style.setProperty('--kx',`${7+(i*37)%88}%`);full.style.setProperty('--ky',`${4+(i*23)%58}%`);full.style.setProperty('--kr',`${(i*71)%360}deg`);full.style.setProperty('--ks',`${.72+(i%5)*.1}`);top.appendChild(full)}
+    for(let i=0;i<14;i++){
+      const p=document.createElement('i');p.className=`popcorn-kernel falling-kernel kernel-${i%3}`;p.innerHTML='<span></span>';
+      const start=-48+(i*29)%96,land=start+(-30+(i*41)%61),spin=260+(i*97)%520,scale=.62+(i%4)*.12;p.style.setProperty('--start-x',`${start}px`);p.style.setProperty('--land-x',`${land}px`);p.style.setProperty('--drop-y',`${innerHeight*.56+70+(i%4)*24}px`);p.style.setProperty('--delay',`${1.05+(i%7)*.29}s`);p.style.setProperty('--spin',`${spin}deg`);p.style.setProperty('--spin-mid',`${spin*.2}deg`);p.style.setProperty('--scale',`${scale}`);p.style.setProperty('--drop-scale',`${scale*.72}`);
       scene.appendChild(p);
     }
-    setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},5700);
+    setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},6000);
   }
   function handleCinemaMic(button){const mic=button.closest('.cinema-mic'),action=button.dataset.micAction;if(action==='take'){mic.classList.add('occupied');mic.querySelector('.mic-frame span').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').includes('ساندي')?'S':'Y';mic.querySelector('b').textContent=(document.querySelector('#currentName')?.textContent||'ساندي').replace('الملكة ','').replace('الملك ','');mic.querySelector('small').textContent='على المايك';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="mute">غلق المايك</button><button data-mic-action="leave">ترك المايك</button>';return;}if(action==='leave'){mic.classList.remove('occupied','muted');mic.querySelector('.mic-frame span').textContent='＋';mic.querySelector('b').textContent='المايك '+mic.dataset.mic;mic.querySelector('small').textContent='متاح';mic.querySelector('.mic-actions').innerHTML='<button data-mic-action="take">أخذ المايك</button><button data-mic-action="invite">دعوة ساندي</button>';return;}if(action==='mute'){mic.classList.toggle('muted');button.textContent=mic.classList.contains('muted')?'فتح المايك':'غلق المايك';return;}if(action==='invite'){button.textContent='تم إرسال الدعوة ✓';}}
   document.addEventListener('change',async e=>{
