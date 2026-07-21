@@ -241,12 +241,11 @@
 
   function launchPopcornBurst(stage){
     const scene=document.createElement('div');scene.className='popcorn-3d-scene';
-    scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><div class="popcorn-top"></div><div class="popcorn-stripes"></div></div>';
+    scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><img src="popcorn-bucket-3d-v37.png" alt="YS popcorn"></div>';
     stage.appendChild(scene);
-    const top=scene.querySelector('.popcorn-top');for(let i=0;i<18;i++){const full=document.createElement('span');full.className=`bucket-kernel k${i%4}`;full.style.setProperty('--kx',`${7+(i*37)%88}%`);full.style.setProperty('--ky',`${4+(i*23)%58}%`);full.style.setProperty('--kr',`${(i*71)%360}deg`);full.style.setProperty('--ks',`${.72+(i%5)*.1}`);top.appendChild(full)}
-    for(let i=0;i<14;i++){
+    for(let i=0;i<20;i++){
       const p=document.createElement('i');p.className=`popcorn-kernel falling-kernel kernel-${i%3}`;p.innerHTML='<span></span>';
-      const start=-48+(i*29)%96,land=start+(-30+(i*41)%61),spin=260+(i*97)%520,scale=.62+(i%4)*.12;p.style.setProperty('--start-x',`${start}px`);p.style.setProperty('--land-x',`${land}px`);p.style.setProperty('--drop-y',`${innerHeight*.56+70+(i%4)*24}px`);p.style.setProperty('--delay',`${1.05+(i%7)*.29}s`);p.style.setProperty('--spin',`${spin}deg`);p.style.setProperty('--spin-mid',`${spin*.2}deg`);p.style.setProperty('--scale',`${scale}`);p.style.setProperty('--drop-scale',`${scale*.72}`);
+      const start=-54+(i*29)%108,land=start+(-34+(i*41)%69),spin=260+(i*97)%520,scale=.62+(i%4)*.12;p.style.setProperty('--start-x',`${start}px`);p.style.setProperty('--land-x',`${land}px`);p.style.setProperty('--drop-y',`${innerHeight*.56+70+(i%4)*24}px`);p.style.setProperty('--delay',`${.9+(i%10)*.22}s`);p.style.setProperty('--spin',`${spin}deg`);p.style.setProperty('--spin-mid',`${spin*.2}deg`);p.style.setProperty('--scale',`${scale}`);p.style.setProperty('--drop-scale',`${scale*.72}`);
       scene.appendChild(p);
     }
     setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},6000);

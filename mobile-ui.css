@@ -7,6 +7,16 @@
   html body #cinema-room .cinema-room.snow-frozen .mic-frame{filter:none!important;outline:0!important;box-shadow:none!important}html body #cinema-room .cinema-room.snow-frozen .cinema-mic[data-mic="1"] .mic-frame:after,html body #cinema-room .cinema-room.snow-frozen .cinema-mic[data-mic="2"] .mic-frame:after{inset:-20px!important;filter:drop-shadow(0 3px 6px #4bbbe8cc)!important}html body #cinema-room .cinema-room.snow-frozen .cinema-mic[data-mic="1"] .mic-frame:after{background-image:url('ice-mic-ring1-v28.png')!important}html body #cinema-room .cinema-room.snow-frozen .cinema-mic[data-mic="2"] .mic-frame:after{background-image:url('ice-mic-ring2-v28.png')!important}
 }
 
+/* v37 photorealistic cylindrical YS bucket */
+@media(max-width:800px){
+  html body #cinema-room .popcorn-bucket{width:210px!important;height:210px!important;margin:0!important;clip-path:none!important;background:none!important;box-shadow:none!important;overflow:visible!important;animation:bucketProductV37 5.85s cubic-bezier(.2,.72,.2,1) both!important;transform-style:preserve-3d!important}
+  html body #cinema-room .popcorn-bucket img{display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;filter:drop-shadow(0 24px 22px #000b) drop-shadow(0 0 20px #ffbd5780)!important;backface-visibility:visible!important}
+  html body #cinema-room .popcorn-top,html body #cinema-room .popcorn-stripes,html body #cinema-room .popcorn-bucket:before,html body #cinema-room .popcorn-bucket b{display:none!important}
+  html body #cinema-room .falling-kernel{width:25px!important;height:22px!important;transform-style:flat!important;animation:kernelRealDropV37 3.35s cubic-bezier(.3,.08,.68,.78) var(--delay) both!important}
+  @keyframes bucketProductV37{0%{opacity:0;transform:translate3d(0,120px,-150px) rotateY(-12deg) scale(.35)}16%{opacity:1;transform:translate3d(0,0,0) rotateY(-12deg) scale(1)}32%{transform:translate3d(-22px,-5px,22px) rotateY(16deg) rotateZ(-4deg) scale(1.03)}50%{transform:translate3d(18px,2px,36px) rotateY(-16deg) rotateZ(4deg) scale(1.05)}68%{transform:translate3d(-13px,-4px,20px) rotateY(14deg) rotateZ(-3deg) scale(1.03)}84%{opacity:1;transform:translate3d(0,0,0) rotateY(0) rotateZ(0) scale(1)}100%{opacity:0;transform:translate3d(0,75px,-100px) rotateX(18deg) scale(.68)}}
+  @keyframes kernelRealDropV37{0%,7%{opacity:0;transform:translate(var(--start-x),-72px) rotate(0) scale(.35)}12%{opacity:1}30%{opacity:1;transform:translate(var(--start-x),-28px) rotate(var(--spin-mid)) scale(var(--scale))}100%{opacity:0;transform:translate(var(--land-x),var(--drop-y)) rotate(var(--spin)) scale(var(--drop-scale))}}
+}
+
 /* v36 restrained realistic popcorn: one filled 3D bucket, only loose kernels falling from its rim */
 @media(max-width:800px){
   html body #cinema-room .popcorn-glow{width:245px!important;height:245px!important;opacity:.72!important}
@@ -193,4 +203,46 @@
   html body #cinema-room .popcorn-bucket b{display:none!important}
   html body #cinema-room .falling-kernel{left:50%!important;top:50%!important;opacity:0!important;animation:kernelDropFinalV36 3.25s cubic-bezier(.32,.05,.72,.78) var(--delay) both!important}
   @keyframes kernelDropFinalV36{0%,7%{opacity:0;transform:translate3d(var(--start-x),-38px,22px) rotate(0) scale(.3)}12%{opacity:1}28%{opacity:1;transform:translate3d(var(--start-x),-15px,45px) rotate(var(--spin-mid)) scale(var(--scale))}100%{opacity:0;transform:translate3d(var(--land-x),var(--drop-y),-12px) rotate(var(--spin)) scale(var(--drop-scale))}}
+}
+
+/* v37 ABSOLUTE FINAL LOCK — photorealistic cylindrical YS bucket */
+@media(max-width:800px){
+  html body #cinema-room .popcorn-3d-scene{perspective:1200px!important}
+  html body #cinema-room .popcorn-glow{width:270px!important;height:270px!important;opacity:.78!important;background:radial-gradient(circle,#ffd98370 0,#ff9b4535 38%,transparent 72%)!important}
+  html body #cinema-room .popcorn-bucket{
+    width:220px!important;height:220px!important;margin:12px 0 0!important;
+    overflow:visible!important;clip-path:none!important;background:none!important;
+    box-shadow:none!important;transform-style:preserve-3d!important;
+    animation:bucketProductV37 5.85s cubic-bezier(.2,.72,.2,1) both!important
+  }
+  html body #cinema-room .popcorn-bucket img{
+    display:block!important;width:100%!important;height:100%!important;object-fit:contain!important;
+    filter:drop-shadow(0 24px 22px #000b) drop-shadow(0 0 18px #ffbd5985)!important;
+    transform:translateZ(24px)!important
+  }
+  html body #cinema-room .popcorn-bucket:before,
+  html body #cinema-room .popcorn-bucket:after,
+  html body #cinema-room .popcorn-bucket b,
+  html body #cinema-room .popcorn-top,
+  html body #cinema-room .bucket-kernel{display:none!important;content:none!important}
+  html body #cinema-room .falling-kernel{
+    width:25px!important;height:22px!important;left:50%!important;top:50%!important;
+    opacity:0!important;transform-style:flat!important;
+    animation:kernelRealDropV37 3.35s cubic-bezier(.3,.08,.68,.78) var(--delay) both!important
+  }
+  @keyframes bucketProductV37{
+    0%{opacity:0;transform:translate3d(0,110px,-140px) rotateY(-10deg) scale(.35)}
+    16%{opacity:1;transform:translate3d(0,0,0) rotateY(-10deg) scale(1)}
+    34%{transform:translate3d(-18px,-4px,20px) rotateY(14deg) rotateZ(-3deg) scale(1.03)}
+    52%{transform:translate3d(17px,1px,32px) rotateY(-14deg) rotateZ(3deg) scale(1.05)}
+    70%{transform:translate3d(-11px,-3px,18px) rotateY(11deg) rotateZ(-2deg) scale(1.03)}
+    86%{opacity:1;transform:translate3d(0,0,0) rotateY(0) scale(1)}
+    100%{opacity:0;transform:translate3d(0,70px,-80px) rotateX(14deg) scale(.72)}
+  }
+  @keyframes kernelRealDropV37{
+    0%,7%{opacity:0;transform:translate(var(--start-x),-64px) rotate(0) scale(.35)}
+    12%{opacity:1}
+    30%{opacity:1;transform:translate(var(--start-x),-25px) rotate(var(--spin-mid)) scale(var(--scale))}
+    100%{opacity:0;transform:translate(var(--land-x),var(--drop-y)) rotate(var(--spin)) scale(var(--drop-scale))}
+  }
 }
