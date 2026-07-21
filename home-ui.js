@@ -233,7 +233,7 @@
     const canvas=document.createElement('canvas');canvas.className='cinema-rain-canvas';stage.appendChild(canvas);
     const ctx=canvas.getContext('2d'),dpr=Math.min(devicePixelRatio||1,1.7);let w=0,h=0,start=performance.now(),raf;
     const resize=()=>{w=innerWidth;h=innerHeight;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0)};resize();
-    const drops=Array.from({length:185},()=>{const z=.18+Math.random()*.92;return{x:Math.random()*innerWidth,y:Math.random()*innerHeight,z,len:6+z*25,speed:7+z*17,alpha:.12+z*.62,wind:1.4+z*3.8}});
+    const drops=Array.from({length:240},(_,i)=>{const z=.18+Math.random()*.92;return{x:((i+Math.random())/240)*innerWidth,y:Math.random()*innerHeight,z,len:6+z*25,speed:7+z*17,alpha:.12+z*.62,wind:.55+z*2.1}});
     const splashes=[];
     const frame=now=>{const t=(now-start)/1000,fadeIn=Math.min(1,t/.7),fadeOut=Math.min(1,(7.8-t)/1.15),life=Math.max(0,fadeIn*fadeOut);if(t>7.9){cancelAnimationFrame(raf);stage.className='cinema-fx-stage';stage.innerHTML='';return}ctx.clearRect(0,0,w,h);ctx.lineCap='round';const gust=(1+Math.sin(t*1.7)*.18)*life;for(const d of drops){d.x+=d.wind*gust;d.y+=d.speed*(.72+life*.65);if(d.y>h+35){if(d.z>.62&&Math.random()>.58)splashes.push({x:d.x,y:h-8,r:1,a:.62,z:d.z});d.y=-40-Math.random()*130;d.x=Math.random()*w}if(d.x>w+30)d.x=-20;const grad=ctx.createLinearGradient(d.x,d.y-d.len,d.x+d.wind,d.y);grad.addColorStop(0,'rgba(210,244,255,0)');grad.addColorStop(.42,`rgba(204,241,255,${d.alpha*life*.5})`);grad.addColorStop(1,`rgba(255,255,255,${d.alpha*life})`);ctx.strokeStyle=grad;ctx.lineWidth=.45+d.z*1.18;ctx.shadowColor='#75d6ff';ctx.shadowBlur=d.z>0.72?3.8:1.2;ctx.beginPath();ctx.moveTo(d.x,d.y-d.len);ctx.lineTo(d.x+d.wind,d.y);ctx.stroke()}ctx.shadowBlur=4;for(let i=splashes.length-1;i>=0;i--){const s=splashes[i];s.r+=1.35+s.z;s.a-=.055;ctx.strokeStyle=`rgba(210,247,255,${Math.max(0,s.a)*life})`;ctx.lineWidth=.7+s.z*.65;ctx.beginPath();ctx.ellipse(s.x,s.y,s.r*2.4,s.r*.48,0,0,Math.PI*2);ctx.stroke();if(s.a<=0)splashes.splice(i,1)}raf=requestAnimationFrame(frame)};
     addEventListener('resize',resize,{once:true});raf=requestAnimationFrame(frame);
@@ -243,6 +243,7 @@
     const scene=document.createElement('div');scene.className='popcorn-3d-scene';
     scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><div class="popcorn-top"></div><div class="popcorn-stripes"></div><b>YS<br><small>CINEMA</small></b></div>';
     stage.appendChild(scene);
+    const top=scene.querySelector('.popcorn-top');for(let i=0;i<22;i++){const full=document.createElement('span');full.className=`bucket-kernel k${i%4}`;full.style.setProperty('--kx',`${7+(i*37)%88}%`);full.style.setProperty('--ky',`${4+(i*23)%58}%`);full.style.setProperty('--kr',`${(i*71)%360}deg`);full.style.setProperty('--ks',`${.72+(i%5)*.1}`);top.appendChild(full)}
     for(let i=0;i<42;i++){
       const p=document.createElement('i');p.className=`popcorn-kernel kernel-${i%3}`;p.innerHTML='<span></span>';
       const side=i%2?-1:1,spread=34+(i*47)%245,peak=120+(i*31)%250;
