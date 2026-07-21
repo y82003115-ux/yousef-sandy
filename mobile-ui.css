@@ -401,3 +401,23 @@
   @keyframes kernelFillV43{0%{opacity:0;transform:translate(var(--start-x),calc(-52vh - 80px)) rotate(0) scale(.25)}9%{opacity:1}72%{opacity:1;transform:translate(var(--mouth-x),-24px) rotate(calc(var(--spin) * .74)) scale(var(--scale))}88%{opacity:1;transform:translate(calc(var(--mouth-x) * .45),43px) rotate(var(--spin)) scale(calc(var(--scale) * .75))}100%{opacity:0;transform:translate(calc(var(--mouth-x) * .2),68px) rotate(var(--spin)) scale(.15)}}
   @keyframes kernelSpillV43{0%{opacity:0;transform:translate(var(--start-x),calc(-54vh - 90px)) rotate(0) scale(.25)}7%{opacity:1}42%{opacity:1;transform:translate(var(--mouth-x),-32px) rotate(calc(var(--spin) * .42)) scale(var(--scale))}55%{opacity:1;transform:translate(var(--spill-x),26px) rotate(calc(var(--spin) * .66)) scale(var(--scale))}100%{opacity:0;transform:translate(calc(var(--spill-x) * 1.45),var(--drop-y)) rotate(var(--spin)) scale(.58)}}
 }
+
+/* v44 ABSOLUTE FINAL — four designed fill stages, then overflow */
+@media(max-width:800px){
+  html body #cinema-room .popcorn-bucket{animation:bucketSteadyV44 6.8s ease-in-out both!important;overflow:visible!important}
+  html body #cinema-room .bucket-fill-level{position:absolute!important;inset:0!important;display:block!important;z-index:3!important;opacity:0!important;pointer-events:none!important}
+  html body #cinema-room .bucket-fill-level img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;object-fit:contain!important;filter:drop-shadow(0 4px 5px #0008) drop-shadow(0 0 9px #ffc75d78)!important}
+  html body #cinema-room .fill-25{clip-path:inset(28% 0 55% 0)!important;animation:fill25V44 .68s ease 1.02s forwards!important}
+  html body #cinema-room .fill-50{clip-path:inset(18% 0 42% 0)!important;animation:fill50V44 .68s ease 1.58s forwards!important}
+  html body #cinema-room .fill-75{clip-path:inset(9% 0 25% 0)!important;animation:fill75V44 .68s ease 2.16s forwards!important}
+  html body #cinema-room .fill-100{clip-path:inset(0)!important;animation:fill100V44 .72s ease 2.72s forwards!important}
+  html body #cinema-room .falling-kernel.kernel-fill{animation:kernelIntoBucketV44 1.28s cubic-bezier(.22,.68,.44,1) var(--delay) both!important}
+  html body #cinema-room .falling-kernel.kernel-spill{animation:kernelOverflowV44 2.7s cubic-bezier(.2,.58,.42,1) var(--delay) both!important}
+  @keyframes bucketSteadyV44{0%{opacity:0;transform:translateY(25px) scale(.88)}7%{opacity:1;transform:translateY(0) scale(1)}45%{transform:rotate(-.65deg)}53%{transform:rotate(.65deg)}61%,91%{opacity:1;transform:rotate(0)}100%{opacity:0;transform:translateY(18px) scale(.94)}}
+  @keyframes fill25V44{0%{opacity:0;transform:translateY(17px)}100%{opacity:1;transform:translateY(0)}}
+  @keyframes fill50V44{0%{opacity:0;transform:translateY(14px)}100%{opacity:1;transform:translateY(0)}}
+  @keyframes fill75V44{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:translateY(0)}}
+  @keyframes fill100V44{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+  @keyframes kernelIntoBucketV44{0%{opacity:0;transform:translate(var(--start-x),calc(-54vh - 90px)) rotate(0) scale(.3)}8%{opacity:1}78%{opacity:1;transform:translate(var(--mouth-x),-18px) rotate(calc(var(--spin) * .78)) scale(var(--scale))}100%{opacity:0;transform:translate(calc(var(--mouth-x) * .35),51px) rotate(var(--spin)) scale(.2)}}
+  @keyframes kernelOverflowV44{0%{opacity:0;transform:translate(var(--start-x),calc(-54vh - 90px)) rotate(0) scale(.28)}8%{opacity:1}42%{opacity:1;transform:translate(var(--mouth-x),-24px) rotate(calc(var(--spin) * .4)) scale(var(--scale))}55%{opacity:1;transform:translate(var(--spill-x),35px) rotate(calc(var(--spin) * .64)) scale(var(--scale))}100%{opacity:0;transform:translate(calc(var(--spill-x) * 1.5),var(--drop-y)) rotate(var(--spin)) scale(.55)}}
+}

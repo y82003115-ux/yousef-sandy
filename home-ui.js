@@ -241,12 +241,12 @@
 
   function launchPopcornBurst(stage){
     const scene=document.createElement('div');scene.className='popcorn-3d-scene';
-    scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><img class="bucket-empty" src="popcorn-bucket-empty-v40.png" alt="YS popcorn"><img class="bucket-pile" src="popcorn-pile-v40.png" alt=""></div>';
+    scene.innerHTML='<div class="popcorn-glow"></div><div class="popcorn-bucket"><img class="bucket-empty" src="popcorn-bucket-empty-v40.png" alt="YS popcorn"><span class="bucket-fill-level fill-25"><img src="popcorn-pile-v40.png" alt=""></span><span class="bucket-fill-level fill-50"><img src="popcorn-pile-v40.png" alt=""></span><span class="bucket-fill-level fill-75"><img src="popcorn-pile-v40.png" alt=""></span><span class="bucket-fill-level fill-100"><img src="popcorn-pile-v40.png" alt=""></span></div>';
     stage.appendChild(scene);
     for(let i=0;i<60;i++){
-      const filling=i<34,p=document.createElement('i');p.className=`popcorn-kernel falling-kernel ${filling?'kernel-fill':'kernel-spill'} kernel-${i%3}`;p.innerHTML='<img src="popcorn-kernel-v39.png" alt="">';
-      const local=filling?i:i-34,startX=-innerWidth*.46+(i*83)%(innerWidth*.92),mouth=-72+(i*43)%145,side=(local%2?-1:1)*(105+(local%6)*21),drop=innerHeight*.58+115+(local%7)*25,spin=420+(i*149)%850,scale=.84+(i%5)*.13;
-      p.style.setProperty('--start-x',`${startX.toFixed(1)}px`);p.style.setProperty('--mouth-x',`${mouth}px`);p.style.setProperty('--spill-x',`${side}px`);p.style.setProperty('--drop-y',`${drop}px`);p.style.setProperty('--delay',`${filling?.22+i*.055:2.18+local*.07}s`);p.style.setProperty('--spin',`${spin}deg`);p.style.setProperty('--scale',`${scale}`);
+      const filling=i<40,p=document.createElement('i');p.className=`popcorn-kernel falling-kernel ${filling?'kernel-fill':'kernel-spill'} kernel-${i%3}`;p.innerHTML='<img src="popcorn-kernel-v39.png" alt="">';
+      const local=filling?i:i-40,startX=-innerWidth*.46+(i*83)%(innerWidth*.92),mouth=-72+(i*43)%145,side=(local%2?-1:1)*(105+(local%6)*21),drop=innerHeight*.58+115+(local%7)*25,spin=420+(i*149)%850,scale=.84+(i%5)*.13;
+      p.style.setProperty('--start-x',`${startX.toFixed(1)}px`);p.style.setProperty('--mouth-x',`${mouth}px`);p.style.setProperty('--spill-x',`${side}px`);p.style.setProperty('--drop-y',`${drop}px`);p.style.setProperty('--delay',`${filling?.18+i*.052:2.85+local*.085}s`);p.style.setProperty('--spin',`${spin}deg`);p.style.setProperty('--scale',`${scale}`);
       scene.appendChild(p);
     }
     setTimeout(()=>{stage.className='cinema-fx-stage';stage.innerHTML=''},7000);
